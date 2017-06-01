@@ -1,0 +1,56 @@
+{
+  "presets": ["save"],
+  "plugins":  ["async-to-promises"],
+  "env": {
+    "browser": {
+      "plugins": [
+        "typecheck",
+        ["react-transform", {
+          "transforms": [
+            {
+              "transform": "react-transform-hmr",
+              "imports": [ "react" ],
+              "locals": [ "module" ]
+            },
+            {
+              "transform": "react-transform-catch-errors",
+              "imports": [ "react", "redbox-react" ]
+            }
+          ]
+        }]
+      ]
+    },
+    "development": {
+      "plugins": [
+        "typecheck"
+      ]
+    },
+    "integration": {
+      "plugins": [
+        "react-remove-prop-types",
+        "transform-react-constant-elements",
+        "transform-react-inline-elements",
+        "transform-react-pure-class-to-function"
+      ]
+    },
+    "staging": {
+     "plugins": [
+        "react-remove-prop-types",
+        "transform-react-constant-elements",
+        "transform-react-inline-elements",
+        "transform-react-pure-class-to-function"
+      ]
+    },
+    "production": {
+      "plugins": [
+        "react-remove-prop-types",
+        "transform-react-constant-elements",
+        "transform-react-inline-elements",
+        "transform-react-pure-class-to-function"
+      ]
+    },
+    "test": {
+      "plugins": [ "istanbul" ]
+    }
+  }
+}

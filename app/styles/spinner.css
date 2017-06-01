@@ -1,0 +1,12 @@
+.app--spinner {
+  display: none;
+  position: absolute;
+  background-image: url('../images/spinner.svg');
+  background-repeat: no-repeat;
+  height: 44px;
+  right: 10px;
+  top: 10px;
+  width: 44px;
+
+  &.active { display: block; }
+}

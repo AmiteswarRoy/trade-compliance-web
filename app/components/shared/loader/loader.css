@@ -1,0 +1,33 @@
+@import '../../../styles/_variables';
+
+.component {
+  position: relative;
+}
+
+.circle {
+  & .inner {
+    text-align: center;
+    padding: 15px;
+  }
+}
+
+.dj-throbber {
+  position: absolute;
+  background-color: var(--charc);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: inherit;
+
+  & .inner {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}

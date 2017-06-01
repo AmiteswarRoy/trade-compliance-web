@@ -1,0 +1,65 @@
+/* Button Block */
+:global(.app--module) button {
+  border-radius: 2px;
+  background-color: var(--blue);
+  color: #fff;
+  font-weight: var(--font-weight-bold);
+  border: 0;
+  padding: 6px 8px;
+  text-transform: uppercase;
+  font-size: calc(var(--font-size-base) - 4);
+  letter-spacing: 1px;
+}
+
+:global(.app--module) button:hover {
+  background-color: var(--blue-link);
+  cursor: pointer;
+}
+
+:global(.button) {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: none;
+  white-space: nowrap;
+  line-height: 1;
+  transition: var(--transition-all);
+  border-radius: 2px;
+}
+
+:global(.button):focus,
+:global(.button):active {
+  outline: none;
+}
+
+/* Button Modifiers */
+:global(.button--primary) {
+  color: #fff;
+  background-color: var(--blue);
+}
+
+:global(.button--primary):hover {
+  color: var(--blue-dark);
+}
+
+:global(.button--link) {
+  color: var(--blue-link);
+}
+
+:global(.button--link):hover {
+  color: var(--blue);
+}
+
+/* Button Elements */
+:global(.button__icon) {
+  display: inline-block;
+}
+
+:global(.button__label) {
+  position: relative;
+}

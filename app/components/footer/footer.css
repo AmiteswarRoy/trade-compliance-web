@@ -1,0 +1,72 @@
+@import '../../styles/_variables';
+
+.component {
+  position: relative;
+  padding: 20px 35px;
+  text-align: left;
+  font-size: calc(var(--font-size-base) - 2);
+  background-color: var(--grey-light);
+  color: var(--grey-dark);
+
+  & a:any-link {
+    color: var(--blue-link);
+  }
+
+  & a:hover {
+    color: var(--blue);
+    cursor: pointer;
+  }
+
+  & ul {
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid var(--grey);
+
+    & li {
+      list-style-type: none;
+      display: inline-block;
+      border-right: 1px solid var(--grey);
+      padding-right: 10px;
+      margin-right: 10px;
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin-right: 0;
+        border: none;
+      }
+    }
+  }
+
+  & .about {
+    margin-top: 20px;
+
+    & img {
+      display: block;
+      clear: both;
+      height: 12px;
+      margin-top: 10px;
+    }
+  }
+}
+
+.breakpoint-4 {
+  &.component {
+    padding: 20px 15px;
+  }
+}
+
+/* this class is assigned to the body, so it should be outside the component */
+.popover {
+  padding: 10px;
+  font-size: calc(var(--font-size-base) - 2);
+
+  & .label {
+    font-size: calc(var(--font-size-base) - 2);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 15px;
+  }
+
+  & .phone {
+    margin-bottom: 5px;
+  }
+}

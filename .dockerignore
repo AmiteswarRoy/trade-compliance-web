@@ -1,0 +1,7 @@
+node_modules
+coverage
+.editorconfig
+.gitattributes
+.gitignore
+.git
+.travis.yml

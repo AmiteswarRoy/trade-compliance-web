@@ -1,0 +1,27 @@
+@import './_variables';
+
+.reset-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.un-select {
+  user-select: none;
+}
+
+.breakpoint-16 {
+  padding: 10px;
+}
+
+.breakpoint-12 {
+  
+}
+
+.breakpoint-8 {
+ 
+}
+
+.breakpoint-4 {
+  
+}

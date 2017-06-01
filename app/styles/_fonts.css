@@ -1,0 +1,88 @@
+/* Material Icons */
+@font-face {
+  font-family: var(--font-3);
+  src: var(--url-15);
+  src:
+    var(--url-16) format('embedded-opentype'),
+    var(--url-17) format('woff'),
+    var(--url-18) format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Roboto */
+@font-face {
+  font-family: var(--font-0);
+  src: var(--url-0);
+  src:
+    var(--url-1) format('embedded-opentype'),
+    var(--url-2) format('woff'),
+    var(--url-3) format('truetype'),
+    var(--url-4) format('svg');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Simplon Norm */
+@font-face {
+  font-family: var(--font-1);
+  src: var(--url-5);
+  src:
+    var(--url-6) format('embedded-opentype'),
+    var(--url-7) format('woff'),
+    var(--url-8) format('truetype'),
+    var(--url-9) format('svg');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Simplon Italic */
+@font-face {
+  font-family: var(--font-2);
+  src: var(--url-10);
+  src:
+    var(--url-11) format('embedded-opentype'),
+    var(--url-12) format('woff'),
+    var(--url-13) format('truetype'),
+    var(--url-14) format('svg');
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* Material UI Icons classes */
+
+:global(.material-icons) {
+  display: inline-block;
+  font-family: 'Material Icons';
+  font-weight: 400;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+:global(.material-icons.md-18) { font-size: 18px; }
+:global(.material-icons.md-24) { font-size: 24px; }
+:global(.material-icons.md-36) { font-size: 36px; }
+:global(.material-icons.md-48) { font-size: 48px; }
+:global(.material-icons.md-top) { vertical-align: top; }
+:global(.material-icons.md-mid) { vertical-align: middle; }
+:global(.material-icons.md-bot) { vertical-align: bottom; }

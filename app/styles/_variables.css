@@ -1,0 +1,98 @@
+:root {
+  --font-0: 'Roboto';
+  --url-0: url(../fonts/Roboto-Medium-webfont.eot);
+  --url-1: url(../fonts/Roboto-Medium-webfont.eot?#iefix);
+  --url-2: url(../fonts/Roboto-Medium-webfont.woff);
+  --url-3: url(../fonts/Roboto-Medium-webfont.ttf);
+  --url-4: url(../fonts/Roboto-Medium-webfont.svg#robotomedium);
+  --font-1: 'Simplon Norm';
+  --url-5: url(../fonts/simplonnorm-regular-webfont.eot);
+  --url-6: url(../fonts/simplonnorm-regular-webfont.eot?#iefix);
+  --url-7: url(../fonts/simplonnorm-regular-webfont.woff2);
+  --url-8: url(../fonts/simplonnorm-regular-webfont.ttf);
+  --url-9: url(../fonts/simplonnorm-regular-webfont.svg#simplon_normregular);
+  --font-2: 'Simplon Italic';
+  --url-10: url(../fonts/simplonnorm-regularitalic-webfont.eot);
+  --url-11: url(../fonts/simplonnorm-regularitalic-webfont.eot?#iefix);
+  --url-12: url(../fonts/simplonnorm-regularitalic-webfont.woff2);
+  --url-13: url(../fonts/simplonnorm-regularitalic-webfont.ttf);
+  --url-14: url(../fonts/simplonnorm-regularitalic-webfont.svg#simplon_normregular);
+  --font-3: 'Material Icons';
+  --url-15: url(../fonts/MaterialIcons-Regular.eot);
+  --url-16: url(../fonts/MaterialIcons-Regular.eot?#iefix);
+  --url-17: url(../fonts/MaterialIcons-Regular.woff2);
+  --url-18: url(../fonts/MaterialIcons-Regular.ttf);
+
+
+  /* Colors
+   *****************************************************************************
+   Gray and brand colors for use across application
+  */
+
+  --charc: #0c2a31; /* "Dark Charc" */
+  --charc-medium: #394859;
+  --charc-transp: rgba(0, 0, 0, 0.15);
+  --grey-darkest: #26383d;
+  --grey-darker: #4f5b66;
+  --grey-dark: #8d9ca9;
+  --grey: #a7adba;
+  --grey-light: #ddd;
+  --grey-lighter: #f4f4f4;
+  --red: #ed5f67;
+  --orange: #f99157;
+  --yellow: #fac863;
+  --green: #99c794;
+  --blue-light: #5fb3b3;
+  --blue: #02a3d5; /* "Berg Blue" */
+  --blue-dark: #028fbb; /* "Berg Tint 2" */
+  --blue-darker: #017295; /* "Berg Tint 3" */
+  --blue-darkest: #014155; /* "Berg Tint 4" */
+  --blue-link: #3d6aa6; /* Default link color */
+  --blue-lighter: #f5f9fc; /* "Berg Tint 1" */
+  --purple: #c594c5;
+  --brown: #ab7967;
+  --white: #fff;
+  --white-transp: rgba(255, 255, 255, 0.35);
+  --white-transp-darker: rgba(255, 255, 255, 0.15);
+  --highlightColor: hwb(190, 35%, 20%);
+
+  /* End Colors */
+
+
+  /* Typography
+   *****************************************************************************
+   Font, line-height, and color for body text
+  */
+  --font-family-sans-serif: 'Simplon Norm', 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-family-serif: Georgia, 'Times New Roman', Times, serif;
+  --font-family-monospace: Menlo, Monaco, Consolas, 'Courier New', monospace;
+  --font-family-base: var(--font-family-sans-serif);
+  --font-size-base: 15px;
+  --font-size-h1: calc(var(--font-size-base) * 2.6);
+  --font-size-h2: calc(var(--font-size-base) * 2.1);
+  --font-size-h3: calc(var(--font-size-base) * 1.7);
+  --font-size-h4: calc(var(--font-size-base) * 1.25);
+  --font-size-h5: var(--font-size-base);
+  --font-size-h6: calc(var(--font-size-base) * 0.85);
+  --font-size-large: calc(var(--font-size-base) * 1.25);
+  --font-size-small: calc(var(--font-size-base) * 0.85);
+  --font-size-normal: var(--font-size-base);
+  --font-weight-normal: normal;
+  --font-weight-light: light;
+  --font-weight-bold: bold;
+  --headings-font-family: inherit;
+  --headings-font-weight: 500;
+  --headings-line-height: 1.1;
+  --headings-color: inherit;
+  --headings-small-color: var(--grey-light);
+  --line-height-base: 1.4;
+  --line-height-computed: calc(var(--font-size-base) * var(--line-height-base));
+
+  /* End Typography */
+
+  /* Transitions */
+  --default-transition-duration: 0.25s;
+  --default-transition-easing: ease-in-out;
+  --transition-all: all var(--default-transition-duration) var(--default-transition-easing);
+  --max-site-width: 1280px;
+}

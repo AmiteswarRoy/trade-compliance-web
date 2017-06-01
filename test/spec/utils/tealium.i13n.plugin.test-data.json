@@ -1,0 +1,115 @@
+{
+  "flattern_data": {
+    "channel": "$$report_suite_name$$",
+    "page_site": "$$PAGE_SITE$$",
+    "page_site_product": "$$PAGE_SITE_PRODUCT$$",
+    "page_content_type": "Profile",
+    "page_content_source": "RiskEntity",
+    "access_type": "N/A",
+    "eid": "WXPFGPJV3QBD2NPY",
+    "language": "en",
+    "user": {
+      "type": "subscriber"
+    },
+    "page_section": "Company",
+    "page_subsection": "Facebook Inc."
+  },
+  "flattern_expected_result": {
+    "channel": "$$report_suite_name$$",
+    "page_site": "$$PAGE_SITE$$",
+    "page_site_product": "$$PAGE_SITE_PRODUCT$$",
+    "page_content_type": "Profile",
+    "page_content_source": "RiskEntity",
+    "access_type": "N/A",
+    "eid": "WXPFGPJV3QBD2NPY",
+    "language": "en",
+    "user_type": "subscriber",
+    "page_section": "Company",
+    "page_subsection": "Facebook Inc."
+  },
+  "payload_data": {
+    "identity": {
+      "interfaceLanguage": "en",
+      "accessToken": "27139XxX_JUYTINRQGM2TGNRYGUXWWVLDNFFXMRSXGE2EKK3DKNRG2VCSOV3XSVKUPJKXCU2SHBBTK5ZTKBCGW32SGFGXC2DRMNXG2K2FJY3G623YK5TFEY2EIEZDQZCBNZ2HERZRIZLGSRJSKBTXKR3XOFSW4QJWHBUWY5THMI4WIOBYHFJVA5LZGNHVCVCMKNJHSYLXGFSTS22QKBBVSTSBNBIEYZCPKY4XUY2MGVRHI2SIJRLUETCUOJHXCZSBMNFVAL3UKNLFMQRPIZMWI3KBFNMFSZ3EGR4HGRLJMQ3ESPKH",
+      "timeZone": "America/New_York",
+      "initialBreakpoint": 16,
+      "entitlements": {
+        "isAccountAdmin": false,
+        "isGroupAdmin": false,
+        "isFactivaMobileUser": true,
+        "isAlertServiceEnabled": true,
+        "isArchiveServiceEnabled": true,
+        "isPlatformAssetServiceEnabled": true,
+        "isNewsstandServiceEnabled": true,
+        "isVenturesourceServiceEnabled": true,
+        "ventureSourceEntitlements": {
+          "isVenturesourceEnabled": true,
+          "isVenturewireEnabled": true,
+          "isLboWireEnabled": true,
+          "isPrivateEquityAnalystEnabled": true,
+          "isDailyBankruptcyReviewDbrEnabled": false,
+          "isDailyBankruptcyReviewHighYieldEnabled": false,
+          "isDailyBankruptcyReviewSmallCapEnabled": false
+        },
+        "userInfo": {
+          "userId": "rumenx",
+          "namespace": "16",
+          "accountId": "9PRO001900",
+          "encryptedUserId": "WXPFGPJV3QBD2NPY",
+          "firstName": "Rumen",
+          "lastName": "Stefanov",
+          "emailAddress": "rstefanov@hotmail.com"
+        },
+        "isDueDiligenceOrderingEnabled": false,
+        "isRiskComplianceServiceEnabled": true,
+        "riskComplianceEntitlements": {
+          "userRole": "Regular"
+        }
+      },
+      "suggestToken": "rumenx=2sPxdr_2BLo1X304wufe7rgN4vyU56PHbRU0YSXBnJoZCw2MCGtm6TMneDQcJpubSe_2F_2Fre93n1fHjZZSUV7q_2BHKg_3D_3D|2",
+      "entitlementsError": null,
+      "suggestTokenError": null
+    },
+    "view": {
+      "content": {
+        "type": "Profile",
+        "source": "RiskEntity"
+      },
+      "section": "Company",
+      "subsection": "Facebook Inc."
+    },
+    "env": "client",
+    "i13nNode": {
+      "_parentNode": null,
+      "_model": {},
+      "_childrenNodes": [],
+      "_DOMNode": {},
+      "_customAttributes": {},
+      "_isLeafNode": false,
+      "_isOrderDirty": false,
+      "_isInViewport": true
+    }
+  },
+  "payload_expected_result": {
+    "channel": "$$report_suite_name$$",
+    "page_site": "$$PAGE_SITE$$",
+    "page_site_product": "$$PAGE_SITE_PRODUCT$$",
+    "page_content_type": "Profile",
+    "page_content_source": "RiskEntity",
+    "access_type": "N/A",
+    "eid": "WXPFGPJV3QBD2NPY",
+    "language": "en",
+    "user_type": "subscriber",
+    "page_section": "Company",
+    "page_subsection": "Facebook Inc."
+  },
+  "payload_expected_result_when_no_data": {
+    "channel": "$$report_suite_name$$",
+    "page_site": "$$PAGE_SITE$$",
+    "page_site_product": "$$PAGE_SITE_PRODUCT$$",
+    "page_content_source": "$$PAGE_SITE$$",
+    "access_type": "N/A",
+    "language": "en",
+    "user_type": "free"
+  }
+}
