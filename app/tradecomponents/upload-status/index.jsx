@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import injectContext from 'decorators/inject-context';
+import classNames from 'classnames/bind';
+
+import styles from './upload-status.css';
+
+const cx = classNames.bind(styles);
 
 @injectContext
 class UploadStatusBoard extends Component {
@@ -13,7 +18,7 @@ class UploadStatusBoard extends Component {
     const uploadDetails = this.props.uploadDetails;
     console.log(uploadDetails);
     return (
-      <table>
+      <table className={ cx('uploadDetails') }>
         <thead>
           <tr>
             <th>File Name</th>

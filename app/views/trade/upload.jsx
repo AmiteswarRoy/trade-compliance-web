@@ -53,17 +53,22 @@ class UploadPage extends Component {
   render() {
     return (
       <div className='container'>
-        <h3>Upload Sheets</h3>
-        <b>Upload File</b>
-        <br />
-        <br />
-        <form className='uploader' encType='multipart/form-data' >
-          <input type='file' name='file' className='upload-file' onChange={ this.handleFile } />
-          <input type='button' value='Upload' onClick={ this.handleSubmit } />
-        </form>
-        <br />
+        <div className='uploadContainerHeader'>
+          <h3>Upload Sheets</h3>
+        </div>
+        <div className='uploadContainer'>
+          <h4>Upload File</h4>
+          <form className='uploader' encType='multipart/form-data' >
+            <input type='file' name='file' className='upload-file' onChange={ this.handleFile } />
+            <input type='button' value='Upload' onClick={ this.handleSubmit } />
+          </form>
+        </div>
         <div className={ this.state.isUploadTriggered ? 'uploadStatusBoardShow' : 'uploadStatusBoardHide' }>
-          <UploadStatusBoard uploadDetails={ this.state.uploadStatus } />
+          <h4>File(s) Uploaded</h4>
+          <hr />
+          <div>
+            <UploadStatusBoard uploadDetails={ this.state.uploadStatus } />
+          </div>
         </div>
       </div>
     );

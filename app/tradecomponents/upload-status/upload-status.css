@@ -1,0 +1,22 @@
+@import '../../styles/_variables';
+
+.uploadDetails {
+    width: 100%;
+    table-layout: fixed;
+    padding: 15px;
+}
+
+.uploadDetails th{
+    background-color: #f0f0f0;
+    height: 40px;
+    text-align: left;
+    padding: 15px;
+}
+.uploadDetails td{
+    background-color: #ffffff;
+    height: 40px;
+    white-space: normal;
+    overflow: hidden;
+    text-align: left;
+    padding: 15px;
+}
