@@ -18,7 +18,7 @@ class UploadStatusBoard extends Component {
     const uploadDetails = this.props.uploadDetails;
     console.log(uploadDetails);
     return (
-      <table className={ cx('uploadDetails') }>
+      <table className={ cx('uploadDetailsTable') }>
         <thead>
           <tr>
             <th>File Name</th>

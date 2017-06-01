@@ -1,18 +1,18 @@
 @import '../../styles/_variables';
 
-.uploadDetails {
+.uploadDetailsTable {
     width: 100%;
     table-layout: fixed;
     padding: 15px;
 }
 
-.uploadDetails th{
+.uploadDetailsTable th{
     background-color: #f0f0f0;
     height: 40px;
     text-align: left;
     padding: 15px;
 }
-.uploadDetails td{
+.uploadDetailsTable td{
     background-color: #ffffff;
     height: 40px;
     white-space: normal;

@@ -6,9 +6,9 @@ class UploadPage extends Component {
   constructor() {
     super();
     this.state = {
-      data_uri: null,
+      fileData: null,
       uploadStatus: null,
-      uploadStatusCss: null
+      isUploadTriggered: false
     };
 
     bindAll(this, 'handleFile', 'handleSubmit');
@@ -21,7 +21,7 @@ class UploadPage extends Component {
   handleSubmit = () => {
     const { flux } = this.context;
     const fd = {
-      data_uri: this.state.data_uri,
+      fileData: this.state.fileData,
       filename: this.state.filename,
       filetype: this.state.filetype
     };
@@ -29,7 +29,7 @@ class UploadPage extends Component {
       console.log(response);
       this.setState({
         uploadStatus: response,
-        isUploadTriggered: 'uploadStatusBoardShow'
+        isUploadTriggered: true
       });
     });
   }
@@ -41,7 +41,7 @@ class UploadPage extends Component {
 
     reader.onload = (upload) => {
       this.setState({
-        data_uri: upload.target.result,
+        fileData: upload.target.result,
         filename: file.name,
         filetype: file.type
       });
