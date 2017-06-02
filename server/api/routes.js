@@ -1,5 +1,6 @@
 import { users } from './data.json';
 import moment from 'moment';
+import XLSX from 'xlsx-js';
 
 const simplifyUsers = collection => collection
   .map(({ user, seed }) => ({ ...user, seed }))
@@ -29,11 +30,16 @@ function routes(router) {
   });
 
   router.post('/upload', (ctx) => {
-    console.log('9999999999999');
+    console.log('upload entry: ');
     const body = ctx.request.body;
     console.log(body.content.filename);
-    //ctx.body = { error: { message: 'Upload failed' } };
-    ctx.body = { fileName: body.content.filename, dateUploaded: moment(new Date()).format("DD/MMM/YYYY") };
+    var workbook = XLSX.read(body.content.fileData, {type : 'binary'});
+    workbook.SheetNames.forEach(function(sheetName){
+        var row = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+        var json_object = JSON.stringify(row);
+        console.log(json_object);
+        ctx.body = { fileName: body.content.filename, dateUploaded: moment(new Date()).format("DD/MMM/YYYY") };
+    });
   });
 }
 

@@ -10,7 +10,6 @@ class UploadActions {
     // You need to return a fn in actions
     // to get alt instance as second parameter to access
     // `alt-resolver` and the ApiClient
-    console.log('1111111111111111111111111111111');
     console.log(data.filename);
     console.log(data.filetype);
     return (dispatch, alt) =>
@@ -24,7 +23,8 @@ class UploadActions {
             url: '/upload',
             method: 'POST',
             data: { content: data },
-            dataType: 'json'
+            dataType: 'json',
+            contentType: 'multipart/form-data'
           });
           console.log(response);
           this.uploadSuccess(response);

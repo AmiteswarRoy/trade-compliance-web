@@ -26,7 +26,6 @@ class UploadPage extends Component {
       filetype: this.state.filetype
     };
     flux.getActions('upload').uploadFile(fd, (response) => {
-      console.log(response);
       this.setState({
         uploadStatus: response,
         isUploadTriggered: true
@@ -35,9 +34,9 @@ class UploadPage extends Component {
   }
 
   handleFile(e) {
+    e.preventDefault();
     const reader = new FileReader();
     const file = e.target.files[0];
-    console.log(file.name);
 
     reader.onload = (upload) => {
       this.setState({
@@ -47,7 +46,7 @@ class UploadPage extends Component {
       });
     };
 
-    reader.readAsDataURL(file);
+    reader.readAsBinaryString(file);
   }
 
   render() {
