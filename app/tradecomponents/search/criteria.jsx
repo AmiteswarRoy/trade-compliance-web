@@ -93,6 +93,7 @@ class SearchCriteria extends Component {
         value: this.state.value
       };
       this.state.goods.push(newInput);
+      this.setState({ goods: this.state.goods });
       this.setState({ value: '' });
     } else {
       alert('TODO ERROR TEXT');
