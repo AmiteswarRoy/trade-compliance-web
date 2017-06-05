@@ -48,6 +48,7 @@ function ServerHTML(props: Props) {
         <meta name='msapplication-TileImage' content='/mstile-144x144.png' />
         <meta name='theme-color' content='#ffffff' />
         <link rel='icon' type='image/ico' href='/favicon.ico' />
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css' />
 
         { /* add newrelic browser monitoring */ }
         { newRelicEnabled && <NewRelic

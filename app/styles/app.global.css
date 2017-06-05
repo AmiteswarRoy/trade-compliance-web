@@ -162,8 +162,66 @@ html, body {
 }
 
 .uploadContainer {
-  display: block;
+  display: inline-block;
   background-color: #f0f0f0;
   width: 100%;
   padding: 35px;
+}
+
+.searchHeader {
+  padding: 15px;
+  height: 60px;
+  border-bottom: 1px solid #c2c3c4;
+  font-size: 20px;
+}
+
+.searchSubHeader {
+  margin: 20px 0px 20px;
+  color: #696363;
+}
+
+.searchText {
+  margin: 20px 0px 20px;
+  font-weight: bold;
+  color: #6b6d6f;
+  font-size: 14px;
+}
+
+.searchTextHeader {
+  padding: 0px 10px;
+}
+
+.searchInput {
+  width: 100%;
+  height: 30px;
+  padding: 0px 10px 0px 10px;
+  font-style: italic;
+}
+
+.searchDivider {
+  margin-top: 24px;
+}
+
+.searchAddMore {
+  width: 100%;
+  height: 30px;
+  margin-top: 18px;
+  color: #9fa1a3;
+}
+
+.searchAddMoreIcon {
+  font-size: 18px;
+  color: #9fa1a3;
+}
+
+.searchFooterContainer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 54px;
+  border-top: solid 1px #c2c3c4;
+  & .footer-span {
+    float: right;
+    margin: 10px 60px;
+  }
 }

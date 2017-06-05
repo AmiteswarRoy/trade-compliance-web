@@ -14,12 +14,21 @@
 .top {
   min-height: 24px;
   color: #ffffff;
-  font-size: 18px;
+  font-size: 14px;
   & .top-left {
     float: left;
     min-height: 1px;
   }
-
+  & .left-header {
+    background-color: #000000;
+    padding: 5px 10px 5px;
+  }
+  & .right-header {
+    background-color: #3aa6d1;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+  }
   & .link-wrap {
     float: right;
     min-height: 1px;
