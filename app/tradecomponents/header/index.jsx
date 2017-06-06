@@ -39,13 +39,13 @@ class SiteHeader extends Component {
 
   _renderLogo = () => {
     const { isMobile } = this._getFlags();
-    /* const to = 'http://www.dowjones.com/';
-    const target = '_blank'; */
+    const to = 'http://www.dowjones.com/';
+    const target = '_blank';
     const useMobile = isMobile;
     return (
       <Row className={ cx('top', 'clearfix') }>
         <div className={ cx('top-left', 'clearfix') }>
-          <Link className={ cx(useMobile ? 'dj-logo-mobile' : 'dj-logo') }>
+          <Link to={ to } target={ target } className={ cx(useMobile ? 'dj-logo-mobile' : 'dj-logo') }>
             <img src={ useMobile ? djorganizationLogoMobile : djorganizationLogo } alt='Dow Jones' />
           </Link>
         </div>

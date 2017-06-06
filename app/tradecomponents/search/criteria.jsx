@@ -1,20 +1,79 @@
 import React, { Component, PropTypes } from 'react';
-import { bindAll, remove } from 'lodash';
 import { Button } from 'react-bootstrap';
+import { remove, map } from 'lodash';
 
 class SearchCriteria extends Component {
-  constructor() {
-    super();
-    this.state = {
-      goods: [],
-      value: ''
-    };
-    bindAll(this, '_renderTop', '_renderHeader', '_renderSearchMessage', '_renderCriteria', '_renderFooter', 'handleChange', 'handleRemove', 'handleAddMore', 'handleSubmit');
+
+  state = {
+    goods: [],
+    criteriaText: '',
+    criteriaCount: 1
+  };
+
+  handleChange = (e) => {
+    this.setState({
+      criteriaText: e.target.value
+    });
   }
 
   static contextTypes = {
     flux: PropTypes.object.isRequired
   }
+
+  handleAddMore = (e) => {
+    e.preventDefault();
+    if (this.state.criteriaText !== '') {
+      const newInput = {
+        id: this.state.criteriaCount,
+        value: this.state.criteriaText
+      };
+      const newGoods = this.state.goods;
+      newGoods.push(newInput);
+      this.state.criteriaCount += 1;
+      this.setState({
+        criteriaText: '',
+        goods: newGoods
+      });
+    } else {
+      alert('Error TBD');
+    }
+  }
+
+  handleRemove = (id, e) => {
+    e.preventDefault();
+    const items = remove(this.state.goods, (element) => {
+      const isMatched = element.id !== id;
+      return isMatched;
+    });
+    this.setState({
+      goods: items
+    });
+  }
+
+  handleSubmit = () => {
+    const { flux } = this.context;
+    const data = {
+      goods: map(this.state.goods, 'value')
+    };
+    this.setState({
+      isSearchTriggered: true
+    });
+    console.log(data);
+    flux.getActions('search').search(data);
+  }
+
+  _renderFooter = () => {
+    const searchText = 'Search';
+    return (
+      <footer className='searchFooterContainer'>
+        <span className='footer-span'>
+          <Button bsStyle='primary' bsSize='small' onClick={ this.handleSubmit }>
+            { searchText }
+          </Button>
+        </span>
+      </footer>
+    );
+  };
 
   _renderTop = () => {
     const headerText = 'Details of Transaction';
@@ -46,90 +105,49 @@ class SearchCriteria extends Component {
   _renderCriteria = () => {
     const headerText = 'Name of the Good';
     const addMoreText = 'Add More Goods ';
+    const emptyText = 'Name of the good';
+    const criteriaVal = this.state.criteriaText;
     return (
-      <div className='row'>
-        <div className='col-md-4'>
-          <div>
-            { headerText }
+      <div>
+        <div className='row'>
+          <div className='col-md-4'>
+            <div>
+              { headerText }
+            </div>
+            <div>
+              <input type='text' className='searchInput' onChange={ this.handleChange } value={ criteriaVal } placeholder={ emptyText } />
+            </div>
           </div>
-          <div>
-            <input placeholder='Name of the Good' className='searchInput' onBlur={ this.handleChange } type='text' defaultValue={ this.state.value } />
-          </div>
-        </div>
-        <div className='col-md-4'>
-          <div className='searchDivider' />
-          <div>
-            <span className='searchAddMore'>
-              { addMoreText }
-            </span>
-            <a href='' onClick={ this.handleAddMore } >
-              <span className='glyphicon glyphicon-plus-sign searchAddMoreIcon' />
-            </a>
-          </div>
-        </div>
-        <div>
-          { this.state.goods.map((item, i) =>
-            <div key={ i } data-id={ item.id } >
-              { item.value }
-              <a href='' onClick={ () => this.handleRemove(item.id) } >
-                <span className='glyphicon glyphicon-minus-sign searchAddMoreIcon' />
+          <div className='col-md-4'>
+            <div className='searchDivider' />
+            <div>
+              <span className='searchAddMore'>
+                { addMoreText }
+              </span>
+              <a href='' onClick={ this.handleAddMore } >
+                <span className='glyphicon glyphicon-plus-sign searchAddMoreIcon' />
               </a>
             </div>
-          ) }
+          </div>
+        </div>
+        <br />
+        <div className='row'>
+          <div>
+            { this.state.goods.map((item, i) =>
+              <span key={ i } data-id={ item.id } >
+                <span>
+                  { item.value }{ ' ' }
+                  <a href='' onClick={ (e) => { this.handleRemove(item.id, e); } } >
+                    <span className='glyphicon glyphicon-minus-sign searchAddMoreIcon' />
+                  </a>
+                </span>
+              </span>
+            ) }
+          </div>
         </div>
       </div>
     );
   };
-
-  handleChange = (e) => {
-    this.setState({ value: e.target.value });
-  }
-
-  handleAddMore = (e) => {
-    e.preventDefault();
-    if (this.state.value !== '') {
-      const newInput = {
-        id: this.state.goods.length,
-        value: this.state.value
-      };
-      this.state.goods.push(newInput);
-      this.setState({ goods: this.state.goods });
-      this.setState({ value: '' });
-    } else {
-      alert('TODO ERROR TEXT');
-    }
-  }
-
-  handleRemove = (id) => {
-    const items = remove(this.state.goods, (el) => { id !== el.id; });
-    this.setState({
-      goods: items
-    });
-  }
-
-  _renderFooter = () => {
-    const searchText = 'Search';
-    return (
-      <footer className='searchFooterContainer'>
-        <span className='footer-span'>
-          <Button bsStyle='primary' bsSize='small' onClick={ this.handleSubmit }>
-            { searchText }
-          </Button>
-        </span>
-      </footer>
-    );
-  };
-
-  handleSubmit = () => {
-    const { flux } = this.context;
-    const data = {
-      goods: this.state.goods
-    };
-    this.setState({
-      isSearchTriggered: true
-    });
-    flux.getActions('search').search(data);
-  }
 
   render() {
     return (

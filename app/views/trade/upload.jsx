@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { bindAll } from 'lodash';
 import UploadStatusBoard from 'tradecomponents/upload-status/';
-import { Button } from 'react-bootstrap';
 
 class UploadPage extends Component {
   constructor() {
@@ -59,20 +58,16 @@ class UploadPage extends Component {
         <div className='uploadContainer'>
           <h4>Upload File</h4>
           <form className='uploader' encType='multipart/form-data' >
-            <div className='form-inline'>
-              <input type='file' name='file' className='upload-file' onChange={ this.handleFile } />
-              <Button bsStyle='primary' bsSize='small' onClick={ this.handleSubmit }>
-                Upload
-              </Button>
-            </div>
+            <input type='file' name='file' id='file' className='upload-file1' onChange={ this.handleFile } />
+            <input type='text' name='file-text' id='file-text' className='upload-file-text' onChange={ this.handleFile } />
+            <label htmlFor='file' className='upload-label'>Browse</label>
+            <input type='button' value='Upload' onClick={ this.handleSubmit } />
           </form>
         </div>
         <div className={ this.state.isUploadTriggered ? 'uploadStatusBoardShow' : 'uploadStatusBoardHide' }>
           <h4>File(s) Uploaded</h4>
           <hr />
-          <div>
-            <UploadStatusBoard uploadDetails={ this.state.uploadStatus } />
-          </div>
+          <UploadStatusBoard uploadDetails={ this.state.uploadStatus } />
         </div>
       </div>
     );
