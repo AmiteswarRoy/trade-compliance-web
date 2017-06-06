@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Button } from 'react-bootstrap';
+// import { Button } from 'react-bootstrap';
 import { remove, map } from 'lodash';
 
 class SearchCriteria extends Component {
@@ -55,11 +55,15 @@ class SearchCriteria extends Component {
     const data = {
       goods: map(this.state.goods, 'value')
     };
-    this.setState({
-      isSearchTriggered: true
-    });
+
     console.log(data);
-    flux.getActions('search').search(data);
+    flux.getActions('search').search(data, (error, response) => {
+      this.setState({
+        isSearchTriggered: true,
+        error_data: error,
+        response_data: response
+      });
+    });
   }
 
   _renderFooter = () => {
@@ -67,9 +71,9 @@ class SearchCriteria extends Component {
     return (
       <footer className='searchFooterContainer'>
         <span className='footer-span'>
-          <Button bsStyle='primary' bsSize='small' onClick={ this.handleSubmit }>
+          <button type='button' className='btn btn-primary' onClick={ this.handleSubmit }>
             { searchText }
-          </Button>
+          </button>
         </span>
       </footer>
     );
@@ -132,13 +136,13 @@ class SearchCriteria extends Component {
         </div>
         <br />
         <div className='row'>
-          <div>
+          <div className='col-md-12'>
             { this.state.goods.map((item, i) =>
-              <span key={ i } data-id={ item.id } >
+              <span key={ i } data-id={ item.id } className='multiSelectSpan'>
                 <span>
                   { item.value }{ ' ' }
                   <a href='' onClick={ (e) => { this.handleRemove(item.id, e); } } >
-                    <span className='glyphicon glyphicon-minus-sign searchAddMoreIcon' />
+                    <span className='cross' >×</span>
                   </a>
                 </span>
               </span>

@@ -231,11 +231,13 @@ html, body {
   height: 30px;
   margin-top: 18px;
   color: #9fa1a3;
+  vertical-align: middle;
 }
 
 .searchAddMoreIcon {
   font-size: 18px;
   color: #9fa1a3;
+  vertical-align: middle;
 }
 
 .searchFooterContainer {
@@ -247,5 +249,31 @@ html, body {
   & .footer-span {
     float: right;
     margin: 10px 60px;
+  }
+}
+
+.multiSelectSpan {
+  margin: 3px 5px 3px 0;
+  padding: 3px 3px 3px 5px;
+  border: 1px solid #aaa;
+  max-width: 100%;
+  border-radius: 3px;
+  background-color: #eeeeee;
+  background-image: linear-gradient(#f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
+  background-size: 100% 19px;
+  background-repeat: repeat-x;
+  background-clip: padding-box;
+  box-shadow: 0 0 2px white inset, 0 1px 0 rgba(0, 0, 0, 0.05);
+  color: #333;
+  line-height: 30px;
+  cursor: default;
+  & .cross {
+    color: #333;
+    font-size: 17px;
+    text-transform: capitalize;
+  }
+  & .cross:hover {
+    color: #000;
+    cursor: default;
   }
 }

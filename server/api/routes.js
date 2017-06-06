@@ -20,7 +20,7 @@ function formatExcel(excelData) {
 }
 
 function validateExcel(row) {
-  
+
   return row;
 }
 
@@ -72,6 +72,13 @@ function routes(router) {
         ctx.body = { fileName: body.content.filename, dateUploaded: moment(new Date()).format("DD/MMM/YYYY") };
       }
     });
+  });
+
+  router.post('/search', (ctx) => {
+    console.log('In search entry: ');
+    const body = ctx.request.body;
+    console.log(body);
+    ctx.body = { totalHits: 2,  files:[{ item_code: "item_code_1", item_description: "item_description_1", "goods": "goods_1", "something": "something_1" },{ item_code: "item_code_2", item_description: "item_description_2", "goods": "goods_2", "something": "something_2"  }]};
   });
 
 }
