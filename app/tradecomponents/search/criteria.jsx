@@ -1,13 +1,19 @@
 import React, { Component, PropTypes } from 'react';
-// import { Button } from 'react-bootstrap';
 import { remove, map } from 'lodash';
+import injectContext from 'decorators/inject-context';
+import classNames from 'classnames/bind';
+import styles from './search.css';
 
+const cx = classNames.bind(styles);
+
+@injectContext
 class SearchCriteria extends Component {
 
   state = {
     goods: [],
     criteriaText: '',
-    criteriaCount: 1
+    criteriaCount: 1,
+    isSearchTriggered: false
   };
 
   handleChange = (e) => {
@@ -67,10 +73,10 @@ class SearchCriteria extends Component {
   }
 
   _renderFooter = () => {
-    const searchText = 'Search';
+    const searchText = 'SEARCH';
     return (
-      <footer className='searchFooterContainer'>
-        <span className='footer-span'>
+      <footer className={ cx('searchFooterContainer') }>
+        <span className={ cx('footer-span') }>
           <button type='button' className='btn btn-primary' onClick={ this.handleSubmit }>
             { searchText }
           </button>
@@ -91,7 +97,7 @@ class SearchCriteria extends Component {
   _renderHeader = () => {
     const headerText = 'DESCRIPTION OF GOODS';
     return (
-      <div className='searchSubHeader'>
+      <div className={ cx('searchSubHeader') }>
         { headerText }
       </div>
     );
@@ -100,7 +106,7 @@ class SearchCriteria extends Component {
   _renderSearchMessage = () => {
     const headerText = 'List of Goods that are going to be part of the deal';
     return (
-      <div className='searchText'>
+      <div className={ cx('searchText') }>
         { headerText }
       </div>
     );
@@ -119,13 +125,13 @@ class SearchCriteria extends Component {
               { headerText }
             </div>
             <div>
-              <input type='text' className='searchInput' onChange={ this.handleChange } value={ criteriaVal } placeholder={ emptyText } />
+              <input type='text' className={ cx('searchInput') } onChange={ this.handleChange } value={ criteriaVal } placeholder={ emptyText } />
             </div>
           </div>
           <div className='col-md-4'>
-            <div className='searchDivider' />
+            <div className={ cx('searchDivider') } />
             <div>
-              <span className='searchAddMore'>
+              <span className={ cx('searchAddMore') }>
                 { addMoreText }
               </span>
               <a href='' onClick={ this.handleAddMore } >
@@ -138,11 +144,11 @@ class SearchCriteria extends Component {
         <div className='row'>
           <div className='col-md-12'>
             { this.state.goods.map((item, i) =>
-              <span key={ i } data-id={ item.id } className='multiSelectSpan'>
+              <span key={ i } data-id={ item.id } className={ cx('multiSelectSpan') }>
                 <span>
                   { item.value }{ ' ' }
                   <a href='' onClick={ (e) => { this.handleRemove(item.id, e); } } >
-                    <span className='cross' >×</span>
+                    <span className={ cx('cross') }>×</span>
                   </a>
                 </span>
               </span>
@@ -156,7 +162,7 @@ class SearchCriteria extends Component {
   render() {
     return (
       <div>
-        <div className='searchHeader'> { this._renderTop() } </div>
+        <div className={ cx('searchHeader') }> { this._renderTop() } </div>
         <div className='container-fluid'>
           { this._renderHeader() }
           { this._renderSearchMessage() }

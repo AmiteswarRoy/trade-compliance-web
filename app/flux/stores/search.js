@@ -4,12 +4,17 @@ class SearchStore {
     this.bindActions(this.alt.getActions('search'));
 
     this.collection = [];
+    this.isSearchTriggered = false;
     this.error = null;
   }
 
-  onSearchSuccess({ response }: { response: ?Object }) {
+  onSearchSuccess(response: Object) {
+    console.log('In search success');
+    console.log('response');
+    console.log(response);
     this.collection = response;
     this.error = null;
+    this.isSearchTriggered = true;
   }
 
   onSearchFail({ error }: { error: ?Object }) {

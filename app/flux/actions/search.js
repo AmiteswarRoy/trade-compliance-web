@@ -25,6 +25,8 @@ class SearchActions {
             data: { content: data },
             dataType: 'json'
           });
+          console.log('In search action');
+          console.log('response');
           console.log(response);
           this.searchSuccess(response);
           cb(response);
