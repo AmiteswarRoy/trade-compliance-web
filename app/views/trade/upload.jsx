@@ -8,7 +8,9 @@ class UploadPage extends Component {
     this.state = {
       fileData: null,
       uploadStatus: null,
-      isUploadTriggered: false
+      isUploadTriggered: false,
+      isError: false,
+      errorMessage: null
     };
 
     bindAll(this, 'handleFile', 'handleSubmit');
@@ -25,11 +27,18 @@ class UploadPage extends Component {
       filename: this.state.filename,
       filetype: this.state.filetype
     };
-    flux.getActions('upload').uploadFile(fd, (response) => {
-      this.setState({
-        uploadStatus: response,
-        isUploadTriggered: true
-      });
+    flux.getActions('upload').uploadFile(fd, (error, response) => {
+      if (error) {
+        this.setState({
+          errorMessage: error.message,
+          isError: true
+        });
+      } else {
+        this.setState({
+          uploadStatus: response,
+          isUploadTriggered: true
+        });
+      }
     });
   }
 
@@ -62,6 +71,9 @@ class UploadPage extends Component {
             <input type='text' name='file-text' id='file-text' className='upload-file-text' onChange={ this.handleFile } />
             <label htmlFor='file' className='upload-label'>Browse</label>
             <input type='button' value='Upload' onClick={ this.handleSubmit } />
+            <span className={ this.state.isError ? 'uploadStatusBoardShow' : 'uploadStatusBoardHide' }>
+              { this.state.errorMessage }
+            </span>
           </form>
         </div>
         <div className={ this.state.isUploadTriggered ? 'uploadStatusBoardShow' : 'uploadStatusBoardHide' }>

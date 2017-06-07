@@ -2,26 +2,50 @@ import { users } from './data.json';
 import moment from 'moment';
 import xlsx from 'xlsx-js';
 import fs from 'fs';
-import { isEmpty, mapKeys, snakeCase, forEach } from 'lodash';
-
-const simplifyUsers = collection => collection
-  .map(({ user, seed }) => ({ ...user, seed }))
-  .map(({ email, name, seed, picture }) => ({ email, name, seed, picture }));
+import { keys, mapKeys, snakeCase, forEach, differenceBy, isEmpty, intersection } from 'lodash';
+import config from './../config';
 
 function formatExcel(excelData) {
   let formattedExcelData = [];
-  forEach(excelData, function(row) {
-    let modifiedRow = mapKeys(row, function(value, key) {
-      return snakeCase(key);
+  try{
+    forEach(excelData, function(row) {
+      const validatedRows = validateExcel(row);
+      let modifiedRow = mapKeys(validatedRows, function(value, key) {
+        return snakeCase(key);
+      });
+      formattedExcelData.push(combineGoodsCodes(modifiedRow));
     });
-    formattedExcelData.push(combineGoodsCodes(modifiedRow));
-  });
-  return formattedExcelData;
+    return formattedExcelData;
+  }
+  catch(error){
+    throw error;
+  }
 }
 
 function validateExcel(row) {
-
-  return row;
+  let isSingleValid = true;
+  let isGroupValid = true;
+  try{
+    const missingProperties = differenceBy(config.excelHeaderList, keys(row));
+    const missingRequiredPropertiesSingle = intersection(missingProperties, config.excelRequiredHeaderListSngle);
+    if(missingRequiredPropertiesSingle.length > 0) isSingleValid = false;
+    else{
+      forEach(keys(config.excelRequiredHeaderListGroup), function(_requiredPropertyGroup) {
+        const missingRequiredPropertiesGroup = intersection(missingProperties, config.excelRequiredHeaderListGroup[_requiredPropertyGroup]);
+        if(missingRequiredPropertiesGroup.length === config.excelRequiredHeaderListGroup[_requiredPropertyGroup].length) isGroupValid = false;
+      });
+    }
+    if(isSingleValid && isGroupValid){
+      forEach(missingProperties, function(_missingProperty) {
+        row[_missingProperty] = null;
+      });
+      return row;
+    }
+    else throw new Error('Invalid Excel file: missing required properties');
+  }
+  catch(error){
+    throw error;
+  }
 }
 
 function combineGoodsCodes(row) {
@@ -61,9 +85,8 @@ function uploadExcelData(fileData, callback) {
 function routes(router) {
 
   router.post('/upload', (ctx) => {
-    console.log('upload entry: ');
+    console.log('upload entry: '+ctx.request.body.content.filename);
     const body = ctx.request.body;
-    console.log(body.content.filename);
     uploadExcelData(body.content.fileData, (error, setUpResponse) => {
       if(error !== null){
         ctx.body = { error: { message: 'Could not upload the file' } };

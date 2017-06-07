@@ -6,7 +6,7 @@ class UploadActions {
     );
   }
 
-  uploadFile(data, cb) {
+  uploadFile(data, callback) {
     // You need to return a fn in actions
     // to get alt instance as second parameter to access
     // `alt-resolver` and the ApiClient
@@ -27,12 +27,17 @@ class UploadActions {
             contentType: 'multipart/form-data'
           });
           console.log(response);
-          this.uploadSuccess(response);
-          cb(response);
+          if (response.error) {
+            this.uploadFail(response.error);
+            callback(response.error);
+          } else {
+            this.uploadSuccess(response);
+            callback(null, response);
+          }
         } catch (error) {
           console.log(error);
           this.uploadFail({ error });
-          cb(error);
+          callback(error);
         }
         alt.getActions('requests').stop();
       });
