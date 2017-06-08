@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SearchCriteria from 'tradecomponents/search/criteria';
+import ResultsBoard from 'tradecomponents/search/results';
 import connect from 'connect-alt';
 
 @connect(({ search: { collection, isSearchTriggered } }) => ({ collection, isSearchTriggered }))
@@ -18,12 +19,12 @@ class SearchPage extends Component {
   }
 
   render() {
-    const { isSearchTriggered } = this.props;
+    const { isSearchTriggered, collection } = this.props;
     return (
       <form className='searcher' name='searchForm'>
         <SearchCriteria />
         <div className={ isSearchTriggered ? 'show' : 'hidden' }>
-          Hi
+          <ResultsBoard resultsDetails={ collection } />
         </div>
       </form>
     );

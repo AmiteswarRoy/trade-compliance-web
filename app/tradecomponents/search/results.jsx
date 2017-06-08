@@ -11,14 +11,28 @@ class ResultsBoard extends Component {
 
   props: {
     className: ?any,
-    resultsData: ?Object
+    resultsDetails: ?Array
   };
 
+  _renderResultsBody = (results) => {
+    console.log(results);
+    const { goods, matchPhrase, itemCode, itemDescription } = results;
+    console.log(goods);
+    return (
+      <tr>
+        <td>{ goods }</td>
+        <td>{ matchPhrase }</td>
+        <td>{ itemCode }</td>
+        <td>{ itemDescription }</td>
+      </tr>
+    );
+  }
+
   _renderTop = () => {
-    const resultsData = this.props.resultsData;
+    const resultsData = this.props.resultsDetails;
     console.log(resultsData);
     return (
-      <table className='table table-responsive'>
+      <table className={ cx('uploadDetailsTable') }>
         <thead>
           <tr>
             <th>File Name</th>
@@ -28,12 +42,7 @@ class ResultsBoard extends Component {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td> { resultsData ? resultsData[Object.keys(resultsData)[0]] : '' } </td>
-            <td> { resultsData ? resultsData[Object.keys(resultsData)[1]] : '' } </td>
-            <td> { resultsData ? resultsData[Object.keys(resultsData)[2]] : '' } </td>
-            <td> { resultsData ? resultsData[Object.keys(resultsData)[3]] : '' } </td>
-          </tr>
+          { resultsData.map(this._renderResultsBody) }
         </tbody>
       </table>
     );

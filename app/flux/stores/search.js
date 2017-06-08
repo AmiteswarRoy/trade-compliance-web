@@ -8,7 +8,7 @@ class SearchStore {
     this.error = null;
   }
 
-  onSearchSuccess(response: Object) {
+  onSearchSuccess(response: Array) {
     console.log('In search success');
     console.log('response');
     console.log(response);
