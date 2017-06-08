@@ -1,0 +1,72 @@
+.searchBoardHeader {
+  font-weight: normal;
+  font-family: Helvetica;
+  font-size: 14px;
+  border-top: 2px solid #ddd !important;
+  text-align: center;
+}
+
+.searchBoardRow {
+  color: #7d7b7b;
+  border-bottom: 1px solid #ddd !important;
+  text-align: center;
+}
+
+.searchBoardColumn {
+  border-right: 1px solid #ddd !important;
+  text-align: center;
+  & ul li {
+    border-bottom: 1px solid #ddd !important;
+    margin-bottom: 2px;
+    line-height: 28px;
+  }
+  & ul li:nth-last-child(1){
+    border-bottom: none !important;
+  }
+}
+
+.btnBack {
+  padding: .5px 0 0 15px;
+  background: url(/caret-primary-left.png) left center/10px 15px no-repeat;
+  color: #575757;
+  font-family: GoodHeadline,Oswald,sans-serif;
+  font-size: 14px;
+  letter-spacing: .5px;
+  line-height: 24px;
+  text-decoration: none !important;
+}
+
+.backNavComponent {
+  display: block;
+  height: 40px;
+  color: #575757;
+  font-family: GoodHeadline,Oswald,sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: .5px;
+  width: 100%;
+}
+
+.backNavContainer {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-right: 20px;
+}
+
+.multiSelectSpan {
+  margin: 3px 5px 3px 0;
+  padding: 3px 3px 3px 5px;
+  border: 1px solid #aaa;
+  max-width: 100%;
+  border-radius: 3px;
+  background-color: #eeeeee;
+  background-image: linear-gradient(#f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
+  background-size: 100% 19px;
+  background-repeat: repeat-x;
+  background-clip: padding-box;
+  box-shadow: 0 0 2px white inset, 0 1px 0 rgba(0, 0, 0, 0.05);
+  color: #333;
+  line-height: 30px;
+  cursor: default;
+  text-transform: capitalize;
+}

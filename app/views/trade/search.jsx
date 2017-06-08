@@ -14,15 +14,17 @@ class SearchPage extends Component {
   }
 
   props: {
-    collection: ?Object,
-    isSearchTriggered: ?boolean
+    collection: Object,
+    isSearchTriggered: boolean
   }
 
   render() {
     const { isSearchTriggered, collection } = this.props;
     return (
       <form className='searcher' name='searchForm'>
-        <SearchCriteria />
+        <div className={ isSearchTriggered ? 'hidden' : 'show' }>
+          <SearchCriteria />
+        </div>
         <div className={ isSearchTriggered ? 'show' : 'hidden' }>
           <ResultsBoard resultsDetails={ collection } />
         </div>

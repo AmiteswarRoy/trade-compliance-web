@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { remove, map } from 'lodash';
 import injectContext from 'decorators/inject-context';
 import classNames from 'classnames/bind';
-import styles from './search.css';
+import styles from './criteria.css';
 
 const cx = classNames.bind(styles);
 
@@ -40,8 +40,27 @@ class SearchCriteria extends Component {
         criteriaText: '',
         goods: newGoods
       });
+    }
+  }
+
+  handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (this.state.criteriaText !== '') {
+        const newInput = {
+          id: this.state.criteriaCount,
+          value: this.state.criteriaText
+        };
+        const newGoods = this.state.goods;
+        newGoods.push(newInput);
+        this.state.criteriaCount += 1;
+        this.setState({
+          criteriaText: '',
+          goods: newGoods
+        });
+      }
     } else {
-      alert('Error TBD');
+      this.state.criteriaText = e.key;
     }
   }
 
@@ -56,7 +75,8 @@ class SearchCriteria extends Component {
     });
   }
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
+    e.preventDefault();
     const { flux } = this.context;
     const data = {
       goods: map(this.state.goods, 'value')
@@ -77,7 +97,7 @@ class SearchCriteria extends Component {
     return (
       <footer className={ cx('searchFooterContainer') }>
         <span className={ cx('footer-span') }>
-          <button type='button' className='btn btn-primary' onClick={ this.handleSubmit }>
+          <button type='button' className='btn btn-primary' onClick={ this.handleSubmit } disabled={ !this.state.goods.length }>
             { searchText }
           </button>
         </span>
@@ -125,16 +145,16 @@ class SearchCriteria extends Component {
               { headerText }
             </div>
             <div>
-              <input type='text' className={ cx('searchInput') } onChange={ this.handleChange } value={ criteriaVal } placeholder={ emptyText } />
+              <input type='text' className={ cx('searchInput') } onKeyPress={ this.handleKeyPress } onChange={ this.handleChange } value={ criteriaVal } placeholder={ emptyText } />
             </div>
           </div>
           <div className='col-md-4'>
             <div className={ cx('searchDivider') } />
-            <div>
-              <span className={ cx('searchAddMore') }>
-                { addMoreText }
-              </span>
+            <div className={ cx('addMoreContainer') }>
               <a href='' onClick={ this.handleAddMore } >
+                <span className={ cx('searchAddMore') }>
+                  { addMoreText }
+                </span>
                 <span className='glyphicon glyphicon-plus-sign searchAddMoreIcon' />
               </a>
             </div>

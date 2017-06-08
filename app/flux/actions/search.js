@@ -2,7 +2,7 @@ class SearchActions {
 
   constructor() {
     this.generateActions(
-      'searchSuccess', 'searchFail'
+      'searchSuccess', 'searchFail', 'showCriteria'
     );
   }
 
@@ -22,7 +22,7 @@ class SearchActions {
           const response = await alt.request({
             url: '/search',
             method: 'POST',
-            data: { content: data },
+            data: { criteria: data },
             dataType: 'json'
           });
           console.log('In search action');

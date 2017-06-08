@@ -3,12 +3,12 @@ class SearchStore {
   constructor() {
     this.bindActions(this.alt.getActions('search'));
 
-    this.collection = [];
+    this.collection = { goods: [], files: [] };
     this.isSearchTriggered = false;
     this.error = null;
   }
 
-  onSearchSuccess(response: Array) {
+  onSearchSuccess(response: Object) {
     console.log('In search success');
     console.log('response');
     console.log(response);
@@ -18,8 +18,12 @@ class SearchStore {
   }
 
   onSearchFail({ error }: { error: ?Object }) {
-    this.collection = [];
+    this.collection = { goods: [], files: [] };
     this.error = error;
+  }
+
+  onShowCriteria() {
+    this.isSearchTriggered = false;
   }
 
 }
