@@ -31,11 +31,7 @@ const config = {
       'Match Phrase'
     ],
     excelRequiredHeaderListGroup: {
-      goods_codes: [
-        'Goods Codes 1',
-        'Goods Codes 2',
-        'Goods Codes 3'
-      ]
+      goods_codes: []
     }
   },
 

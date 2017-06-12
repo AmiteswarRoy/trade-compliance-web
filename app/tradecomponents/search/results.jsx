@@ -53,7 +53,7 @@ class ResultsBoard extends Component {
           <tr>
             <th className={ cx(searchHeaderCSS) }>Name</th>
             <th className={ cx(searchHeaderCSS) }>Item Code</th>
-            <th className={ cx(searchHeaderCSS) }>Matched Dual Good Code</th>
+            <th className={ cx(searchHeaderCSS) }>Matched Good Code</th>
             <th className={ cx(searchHeaderCSS) }>Item Description</th>
           </tr>
         </thead>

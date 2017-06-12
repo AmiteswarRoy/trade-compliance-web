@@ -157,7 +157,7 @@ html, body {
   display: block;
   background-color: #f0f0f0;
   width: 100%;
-  padding: 20px 35px 0px 35px;
+  padding: 20px 35px 20px 35px;
   margin-top: 30px;
 }
 
@@ -165,31 +165,7 @@ html, body {
   display: block;
   background-color: #f0f0f0;
   width: 100%;
-  padding: 35px;
-}
-
-.upload-file {
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
-}
-
-.upload-label {
-  font-size: 1em;
-  font-weight: 700;
-  color: black;
-  background-color: grey;
-  display: inline-block;
-  cursor: pointer; /* "hand" cursor */
-  outline: 1px dotted #000;
-  outline: -webkit-focus-ring-color auto 5px;
-}
-
-.upload-label:hover {
-    background-color: red;
+  padding: 20px;
 }
 
 .hidden {
@@ -202,4 +178,9 @@ html, body {
 
 .captitalize {
   text-transform: capitalize;
+}
+
+.inlineContainer {
+    display: inline-block;
+    padding: 0px 0px 0px 10px;
 }

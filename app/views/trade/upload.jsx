@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { bindAll } from 'lodash';
+import UploadFileInput from 'tradecomponents/upload-file/';
 import UploadStatusBoard from 'tradecomponents/upload-status/';
 
 class UploadPage extends Component {
@@ -10,6 +11,7 @@ class UploadPage extends Component {
       uploadStatus: null,
       isUploadTriggered: false,
       isError: false,
+      isFileSelected: false,
       errorMessage: null
     };
 
@@ -36,7 +38,8 @@ class UploadPage extends Component {
       } else {
         this.setState({
           uploadStatus: response,
-          isUploadTriggered: true
+          isUploadTriggered: true,
+          isFileSelected: true
         });
       }
     });
@@ -51,7 +54,8 @@ class UploadPage extends Component {
       this.setState({
         fileData: upload.target.result,
         filename: file.name,
-        filetype: file.type
+        filetype: file.type,
+        isFileSelected: true
       });
     };
 
@@ -59,6 +63,7 @@ class UploadPage extends Component {
   }
 
   render() {
+    const uploadText = 'UPLOAD';
     return (
       <div className='container'>
         <div className='uploadContainerHeader'>
@@ -67,18 +72,19 @@ class UploadPage extends Component {
         <div className='uploadContainer'>
           <h4>Upload File</h4>
           <form className='uploader' encType='multipart/form-data' >
-            <input type='file' name='file' id='file' className='upload-file1' onChange={ this.handleFile } />
-            <input type='text' name='file-text' id='file-text' className='upload-file-text' onChange={ this.handleFile } />
-            <label htmlFor='file' className='upload-label'>Browse</label>
-            <input type='button' value='Upload' onClick={ this.handleSubmit } />
-            <span className={ this.state.isError ? 'uploadStatusBoardShow' : 'uploadStatusBoardHide' }>
-              { this.state.errorMessage }
-            </span>
+            <UploadFileInput inputPlaceHolder='No file chosen' buttonDisplayText='Browse' className='inlineContainer' getFile={ this.handleFile.bind(this) } />
+            <div className='inlineContainer'>
+              <button type='button' disabled={ !this.state.isFileSelected } className='btn btn-primary' onClick={ this.handleSubmit } >
+                { uploadText }
+              </button>
+              <span className={ this.state.isError ? 'uploadStatusBoardShow' : 'uploadStatusBoardHide' }>
+                { this.state.errorMessage }
+              </span>
+            </div>
           </form>
         </div>
         <div className={ this.state.isUploadTriggered ? 'uploadStatusBoardShow' : 'uploadStatusBoardHide' }>
           <h4>File(s) Uploaded</h4>
-          <hr />
           <UploadStatusBoard uploadDetails={ this.state.uploadStatus } />
         </div>
       </div>

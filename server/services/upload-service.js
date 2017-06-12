@@ -45,8 +45,10 @@ function validateExcel(row) {
     if(missingRequiredPropertiesSingle.length > 0) isSingleValid = false;
     else{
       forEach(keys(config.excelRequiredHeaderListGroup), function(_requiredPropertyGroup) {
-        const missingRequiredPropertiesGroup = intersection(missingProperties, config.excelRequiredHeaderListGroup[_requiredPropertyGroup]);
-        if(missingRequiredPropertiesGroup.length === config.excelRequiredHeaderListGroup[_requiredPropertyGroup].length) isGroupValid = false;
+        if(config.excelRequiredHeaderListGroup[_requiredPropertyGroup].length > 0) {
+          const missingRequiredPropertiesGroup = intersection(missingProperties, config.excelRequiredHeaderListGroup[_requiredPropertyGroup]);
+          if(missingRequiredPropertiesGroup.length === config.excelRequiredHeaderListGroup[_requiredPropertyGroup].length) isGroupValid = false;
+        }
       });
     }
     if(isSingleValid && isGroupValid){

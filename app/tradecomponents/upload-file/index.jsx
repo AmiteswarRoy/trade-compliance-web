@@ -7,23 +7,37 @@ import styles from './upload-file.css';
 const cx = classNames.bind(styles);
 
 @injectContext
-class UploadStatusBoard extends Component {
+class UploadFileInput extends Component {
 
   props: {
-    className: ?any
+    className: ?any,
+    inputPlaceHolder: ?String,
+    buttonDisplayText: ?String,
+    getFile: ?Function
   };
 
-  _renderTop = () => {
-    return (
-      
-    );
+  static defaultProps = {
+    onGetFile: () => ({})
   };
 
   render() {
+    const { inputPlaceHolder, buttonDisplayText, className } = this.props;
+    console.log(inputPlaceHolder);
+    console.log(buttonDisplayText);
+    console.log(buttonDisplayText);
+
     return (
-      { this._renderTop() }
+      <div className={ cx(className) }>
+        <input type='file' name='file' id='file' className={ cx('inputFile') } onChange={ this.props.getFile } />
+        <span className={ cx('inputFileButtonLabel') } >
+          <input type='text' name='file-text' id='file-text' className={ cx('inputTextBox') } placeholder={ inputPlaceHolder } />
+        </span>
+        <label htmlFor='file' className={ cx('inputFileButton') } >
+          { buttonDisplayText }
+        </label>
+      </div>
     );
   }
 }
 
-export default UploadStatusBoard;
+export default UploadFileInput;
