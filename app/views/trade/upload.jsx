@@ -72,7 +72,7 @@ class UploadPage extends Component {
         <div className='uploadContainer'>
           <h4>Upload File</h4>
           <form className='uploader' encType='multipart/form-data' >
-            <UploadFileInput inputPlaceHolder='No file chosen' buttonDisplayText='Browse' className='inlineContainer' getFile={ this.handleFile.bind(this) } />
+            <UploadFileInput inputPlaceHolder='No file chosen' buttonDisplayText='Browse' className='inlineContainer' getFile={ this.handleFile.bind(this) } selectedFileName={ this.state.filename } />
             <div className='inlineContainer'>
               <button type='button' disabled={ !this.state.isFileSelected } className='btn btn-primary' onClick={ this.handleSubmit } >
                 { uploadText }

@@ -13,7 +13,8 @@ class UploadFileInput extends Component {
     className: ?any,
     inputPlaceHolder: ?String,
     buttonDisplayText: ?String,
-    getFile: ?Function
+    getFile: ?Function,
+    selectedFileName: ?String
   };
 
   static defaultProps = {
@@ -30,7 +31,7 @@ class UploadFileInput extends Component {
       <div className={ cx(className) }>
         <input type='file' name='file' id='file' className={ cx('inputFile') } onChange={ this.props.getFile } />
         <span className={ cx('inputFileButtonLabel') } >
-          <input type='text' name='file-text' id='file-text' className={ cx('inputTextBox') } placeholder={ inputPlaceHolder } />
+          <input type='text' name='file-text' id='file-text' className={ cx('inputTextBox') } placeholder={ inputPlaceHolder } value={ this.props.selectedFileName } />
         </span>
         <label htmlFor='file' className={ cx('inputFileButton') } >
           { buttonDisplayText }
