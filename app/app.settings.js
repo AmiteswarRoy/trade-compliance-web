@@ -65,6 +65,11 @@ const settings = {
         URL: 'https://api.usersnap.com/load/2f13a347-b945-4fc2-90fd-e2fb59d22e18.js',
         ENABLED: true
       }
+    },
+    TRADES_COMPLIANCE: {
+      API_SEARCH_URL: 'http://localhost:9900/search/v1/searchData',
+      API_UPLOAD_URL: 'http://localhost:9900/search/v1/upload',
+      API_DELETE_URL: 'http://localhost:9900/search/v1/delete'
     }
   },
 
