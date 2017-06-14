@@ -124,7 +124,7 @@ class SearchCriteria extends Component {
   };
 
   _renderSearchMessage = () => {
-    const headerText = 'List of Goods that are going to be part of the deal';
+    const headerText = 'List the goods name or descriptive terms on which to search';
     return (
       <div className={ cx('searchText') }>
         { headerText }

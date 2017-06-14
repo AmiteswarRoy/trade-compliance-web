@@ -67,7 +67,7 @@ class UploadPage extends Component {
     return (
       <div className='container'>
         <div className='uploadContainerHeader'>
-          <h3>Upload Sheets</h3>
+          <h3>Upload Trade Compliance Feed Spreadsheet</h3>
         </div>
         <div className='uploadContainer'>
           <h4>Upload File</h4>
