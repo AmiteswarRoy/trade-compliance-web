@@ -19,20 +19,17 @@ searchService.search = async (ctx) => {
   await searchService.fetchData(request)
   .then((res) => {
     ctx.body  = searchService.splitgoods(res);
-    ctx.body.goods = body.criteria.goods;
   })
   .catch((err) => {
     ctx.body  = err;
   });
-
-  console.log("I am here");
-  //ctx.body = { hits:2, goods:body.criteria.goods, files:[{ item_code: 'ML7.c', item_description: 'Chemical warfare (CW) binary precursors and key precursors', goods: ['CAS 16893‑85‑9'], match_phrase: 'Sodium hexafluorosilicate' },{ item_code: '0A987', item_description: 'Optical sighting devices for firearms (including shotguns controlled by 0A984); and parts (See list of items controlled).', goods: ['93052000','9305200090'], match_phrase: 'Armson OEG' }] };
+  ctx.body.goods = body.criteria.goods;
 };
 
- searchService.fetchData = (request) => {
+searchService.fetchData = (request) => {
   return axios(request)
     .then(res => res.data)
-    .catch(res => Promise.reject(helper.getError(res.data)));
+    .catch(res => Promise.reject({ message: res.data.message }));
 };
 
 searchService.splitgoods = (data) => {
@@ -46,7 +43,6 @@ searchService.splitgoods = (data) => {
       }
     });
   }
-  console.log(data);
   return data;
 };
 

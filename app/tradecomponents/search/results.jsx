@@ -64,10 +64,19 @@ class ResultsBoard extends Component {
     );
   };
 
+  _renderMessage = (message) => {
+    const searchErrorCSS = 'Error:';
+    return (
+      <div className='alert alert-danger' role='alert'>
+        <span className='glyphicon glyphicon-exclamation-sign' aria-hidden='true' />
+        <span className='sr-only'>{ searchErrorCSS }</span>
+        { message }
+      </div>
+    );
+  };
+
   render() {
     const searchResult = this.props.resultsDetails;
-    console.log('In results render');
-    console.log(searchResult);
     return (
       <div>
         <nav className={ cx('backNavComponent') }>
@@ -86,7 +95,7 @@ class ResultsBoard extends Component {
             </div>
           </div>
         </nav>
-        { this._renderTop(searchResult.files) }
+        { searchResult.message ? (this._renderMessage(searchResult.message)) : (this._renderTop(searchResult.files)) }
       </div>
     );
   }

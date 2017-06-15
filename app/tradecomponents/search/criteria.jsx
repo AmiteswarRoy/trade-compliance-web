@@ -82,7 +82,6 @@ class SearchCriteria extends Component {
       goods: map(this.state.goods, 'value')
     };
 
-    console.log(data);
     flux.getActions('search').search(data, (error, response) => {
       this.setState({
         isSearchTriggered: true,
@@ -133,23 +132,19 @@ class SearchCriteria extends Component {
   };
 
   _renderCriteria = () => {
-    const headerText = 'Name of the Good';
     const addMoreText = 'Add More Goods ';
     const emptyText = 'Name of the good';
     const criteriaVal = this.state.criteriaText;
     return (
       <div>
+        <br />
         <div className='row'>
-          <div className='col-md-4'>
-            <div>
-              { headerText }
-            </div>
+          <div className='col-md-6'>
             <div>
               <input type='text' className={ cx('searchInput') } onKeyPress={ this.handleKeyPress } onChange={ this.handleChange } value={ criteriaVal } placeholder={ emptyText } />
             </div>
           </div>
           <div className='col-md-4'>
-            <div className={ cx('searchDivider') } />
             <div className={ cx('addMoreContainer') }>
               <a href='' onClick={ this.handleAddMore } >
                 <span className={ cx('searchAddMore') }>
