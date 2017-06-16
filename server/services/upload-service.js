@@ -13,20 +13,32 @@ uploadService.upload = async (ctx) => {
   const body = ctx.request.body;
   await _uploadExcelData(body.content.fileData)
   .then( async (fileJson) => {
-    const baseUrl = settingsProvider.get('TRADES_COMPLIANCE.API_UPLOAD_URL');
-    const request = {
-      url: `${baseUrl}`,
-      method: 'post',
-      timeout: settingsProvider.get('GENERAL.TIME_OUT'),
-      data: fileJson
+    const baseUrl = settingsProvider.get('TRADES_COMPLIANCE.API_URL');
+    const request_delete = {
+      url: `${baseUrl}/delete`,
+      method: 'delete',
+      timeout: settingsProvider.get('GENERAL.TIME_OUT')
     };
-    await _uploadData(request)
-    .then((res) => {
-      ctx.body = { fileName: body.content.filename, dateUploaded: moment(new Date()).format("DD/MMM/YYYY") };
+    await _searchAPIcall(request_delete)
+    .then( async (res) => {
+      const request_upload = {
+        url: `${baseUrl}/upload`,
+        method: 'post',
+        timeout: settingsProvider.get('GENERAL.TIME_OUT'),
+        data: fileJson
+      };
+      await _searchAPIcall(request_upload)
+      .then((res) => {
+        ctx.body = { fileName: body.content.filename, dateUploaded: moment(new Date()).format("DD/MMM/YYYY") };
+      })
+      .catch((err) => {
+        ctx.body = { error: { message: 'Could not upload the file' } };
+      });
     })
     .catch((err) => {
       ctx.body = { error: { message: 'Could not upload the file' } };
     });
+
   })
   .catch((err) => {
     ctx.body = { error: { message: 'Could not upload the file' } };
@@ -85,11 +97,10 @@ let _uploadExcelData = (fileData) => {
     workbook.SheetNames.forEach(function(sheetName){
       const rows = xlsx.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
       jsonObject = _formatExcel(rows);
-      let jsonString = JSON.stringify(jsonObject, null, 2);
-      fs.writeFile("excel.txt", jsonString, (err) => {
+      //let jsonString = JSON.stringify(jsonObject, null, 2);
+      //fs.writeFile("excel.txt", jsonString, (err) => {
         //console.log(jsonObject);
-      });
-      //Make java api call
+      //});
     });
     return Promise.resolve(jsonObject);
   }
@@ -99,7 +110,7 @@ let _uploadExcelData = (fileData) => {
   }
 }
 
-let _uploadData = (request) => {
+let _searchAPIcall = (request) => {
   return axios(request)
     .then(res => res.data)
     .catch(res => Promise.reject({ message: res.data.message }));

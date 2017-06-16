@@ -38,7 +38,6 @@
 
 .backNavComponent {
   display: block;
-  height: 40px;
   color: #575757;
   font-family: GoodHeadline,Oswald,sans-serif;
   font-size: 15px;
@@ -69,4 +68,17 @@
   line-height: 30px;
   cursor: default;
   text-transform: capitalize;
+}
+
+.noDataMessage {
+  text-align: center;
+}
+
+.tableScroll {
+  overflow: scroll;
+  height: 100vh;
+}
+
+.searchTable {
+  margin-bottom: 200px;
 }

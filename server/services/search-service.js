@@ -1,16 +1,16 @@
 import axios from 'axios';
 import settingsProvider from 'utils/settings-provider';
 import helper from 'sources/utils/api/v3/helper';
-
+import { union } from 'lodash'
 let searchService = {};
 
 searchService.search = async (ctx) => {
   console.log('In search entry: ');
   const body = ctx.request.body
-  console.log(body);
-  const baseUrl = settingsProvider.get('TRADES_COMPLIANCE.API_SEARCH_URL');
+  console.log(JSON.stringify(body));
+  const baseUrl = settingsProvider.get('TRADES_COMPLIANCE.API_URL');
   const request = {
-    url: `${baseUrl}`,
+    url: `${baseUrl}/search`,
     method: 'post',
     timeout: settingsProvider.get('GENERAL.TIME_OUT'),
     data:  body
@@ -36,11 +36,7 @@ let _splitgoods = (data) => {
   if(data!=null){
     data.files.forEach((_section) =>
     {
-      if(_section.goods!=null){
-        _section.goods = _section.goods.split(';')
-      }else{
-        _section.goods = [];
-      }
+      _section.goods = union(_section.goods_codes_1?_section.goods_codes_1.split(';'):[],_section.goods_codes_2?_section.goods_codes_2.split(';'):[],_section.goods_codes_3?_section.goods_codes_3.split(';'):[]);
     });
   }
   return data;

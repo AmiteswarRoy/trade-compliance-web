@@ -47,8 +47,9 @@ class ResultsBoard extends Component {
 
   _renderTop = (resultsData) => {
     const searchHeaderCSS = 'searchBoardHeader';
+    console.log(resultsData);
     return (
-      <table className='table table-responsive table-hover'>
+      <table className={ [ 'table table-responsive table-hover', cx('searchTable') ].join(' ') }>
         <thead>
           <tr>
             <th className={ cx(searchHeaderCSS) }>Name</th>
@@ -58,9 +59,27 @@ class ResultsBoard extends Component {
           </tr>
         </thead>
         <tbody>
-          { resultsData.map(this._renderResultsBody) }
+          { resultsData != null && resultsData.length > 0 ? resultsData.map(this._renderResultsBody) : this._renderEmptyTable() }
         </tbody>
       </table>
+    );
+  };
+
+  _renderEmptyTable = () => {
+    const searchError = 'Info:';
+    const message = ' No records found';
+    return (
+      <tr>
+        <td colSpan='4'>
+          <div className={ cx('noDataMessage') }>
+            <div className='alert alert-info' role='alert'>
+              <span className='glyphicon glyphicon-exclamation-sign' aria-hidden='true' />
+              <span className='sr-only'>{ searchError }</span>
+              { message }
+            </div>
+          </div>
+        </td>
+      </tr>
     );
   };
 
@@ -95,7 +114,9 @@ class ResultsBoard extends Component {
             </div>
           </div>
         </nav>
-        { searchResult.message ? (this._renderMessage(searchResult.message)) : (this._renderTop(searchResult.files)) }
+        <div className={ cx('tableScroll') }>
+          { 'message' in searchResult ? (this._renderMessage(searchResult.message)) : (this._renderTop(searchResult.files)) }
+        </div>
       </div>
     );
   }

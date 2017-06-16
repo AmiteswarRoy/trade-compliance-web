@@ -67,9 +67,7 @@ const settings = {
       }
     },
     TRADES_COMPLIANCE: {
-      API_SEARCH_URL: 'http://localhost:9900/search/v1/result',
-      API_UPLOAD_URL: 'http://localhost:9900/search/v1/createbulkItems',
-      API_DELETE_URL: 'http://localhost:9900/search/v1/delete'
+      API_URL: 'http://localhost:9900/tradecompliance/v1'
     }
   },
 
