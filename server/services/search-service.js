@@ -16,9 +16,9 @@ searchService.search = async (ctx) => {
     data:  body
   };
 
-  await searchService.fetchData(request)
+  await _fetchData(request)
   .then((res) => {
-    ctx.body  = searchService.splitgoods(res);
+    ctx.body  = _splitgoods(res);
   })
   .catch((err) => {
     ctx.body  = err;
@@ -26,13 +26,13 @@ searchService.search = async (ctx) => {
   ctx.body.goods = body.criteria.goods;
 };
 
-searchService.fetchData = (request) => {
+let _fetchData = (request) => {
   return axios(request)
     .then(res => res.data)
     .catch(res => Promise.reject({ message: res.data.message }));
 };
 
-searchService.splitgoods = (data) => {
+let _splitgoods = (data) => {
   if(data!=null){
     data.files.forEach((_section) =>
     {

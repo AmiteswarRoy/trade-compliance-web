@@ -11,7 +11,7 @@ let uploadService = {};
 uploadService.upload = async (ctx) => {
   console.log('upload entry: '+ctx.request.body.content.filename);
   const body = ctx.request.body;
-  await uploadService.uploadExcelData(body.content.fileData)
+  await _uploadExcelData(body.content.fileData)
   .then( async (fileJson) => {
     const baseUrl = settingsProvider.get('TRADES_COMPLIANCE.API_UPLOAD_URL');
     const request = {
@@ -20,7 +20,7 @@ uploadService.upload = async (ctx) => {
       timeout: settingsProvider.get('GENERAL.TIME_OUT'),
       data: fileJson
     };
-    await uploadService.uploadData(request)
+    await _uploadData(request)
     .then((res) => {
       ctx.body = { fileName: body.content.filename, dateUploaded: moment(new Date()).format("DD/MMM/YYYY") };
     })
@@ -33,15 +33,15 @@ uploadService.upload = async (ctx) => {
   });
 };
 
-uploadService.formatExcel = (excelData) => {
+let _formatExcel = (excelData) => {
   let formattedExcelData = [];
   try{
     forEach(excelData, function(row) {
-      const validatedRows = uploadService.validateExcel(row);
+      const validatedRows = _validateExcel(row);
       let modifiedRow = mapKeys(validatedRows, function(value, key) {
         return snakeCase(key);
       });
-      formattedExcelData.push(uploadService.combineGoodsCodes(modifiedRow));
+      formattedExcelData.push(modifiedRow);
     });
     return formattedExcelData;
   }
@@ -50,7 +50,7 @@ uploadService.formatExcel = (excelData) => {
   }
 }
 
-uploadService.validateExcel = (row) => {
+let _validateExcel = (row) => {
   let isSingleValid = true;
   let isGroupValid = true;
   try{
@@ -78,27 +78,13 @@ uploadService.validateExcel = (row) => {
   }
 }
 
-uploadService.combineGoodsCodes = (row) => {
-  if(row.goods_codes_1){
-    row['tc_goods_codes'] = row.goods_codes_1;
-    if(row.goods_codes_2) row['tc_goods_codes'] = row['tc_goods_codes'] +'; '+ row.goods_codes_2;
-    if(row.goods_codes_3) row['tc_goods_codes'] = row['tc_goods_codes'] +'; '+ row.goods_codes_3;
-  }
-  else if(row.goods_codes_2){
-    row['tc_goods_codes'] = row.goods_codes_2;
-    if(row.goods_codes_3) row['tc_goods_codes'] = row['tc_goods_codes'] +'; '+ row.goods_codes_3;
-  }
-  else if(row.goods_codes_3) row['tc_goods_codes'] = row.goods_codes_3;
-  return row;
-}
-
- uploadService.uploadExcelData = (fileData) => {
+let _uploadExcelData = (fileData) => {
   const workbook = xlsx.read(fileData, {type : 'binary'});
   try{
     let jsonObject = {};
     workbook.SheetNames.forEach(function(sheetName){
       const rows = xlsx.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
-      jsonObject = uploadService.formatExcel(rows);
+      jsonObject = _formatExcel(rows);
       let jsonString = JSON.stringify(jsonObject, null, 2);
       fs.writeFile("excel.txt", jsonString, (err) => {
         //console.log(jsonObject);
@@ -113,7 +99,7 @@ uploadService.combineGoodsCodes = (row) => {
   }
 }
 
-uploadService.uploadData = (request) => {
+let _uploadData = (request) => {
   return axios(request)
     .then(res => res.data)
     .catch(res => Promise.reject({ message: res.data.message }));
