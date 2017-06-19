@@ -23,9 +23,9 @@ class ResultsBoard extends Component {
     const rowColumn = 'searchBoardColumn';
     return (
       <tr className={ cx(rowCss) }>
-        <td className={ cx(rowColumn) }>{ results.match_phrase }</td>
-        <td className={ cx(rowColumn) }>{ results.item_code }</td>
-        <td className={ cx(rowColumn) }>
+        <td className={ [ cx(rowColumn), cx('name') ].join(' ') }>{ results.match_phrase }</td>
+        <td className={ [ cx(rowColumn), cx('itemCode') ].join(' ') }>{ results.item_code }</td>
+        <td className={ [ cx(rowColumn), cx('goodCodes') ].join(' ') }>
           <ul className={ cx('goodsRow') }>
             { results.goods.map(e =>
               <li>
@@ -34,7 +34,7 @@ class ResultsBoard extends Component {
             ) }
           </ul>
         </td>
-        <td>{ results.item_description }</td>
+        <td className={ cx('itemDescription') }>{ results.item_description }</td>
       </tr>
     );
   }
@@ -52,10 +52,10 @@ class ResultsBoard extends Component {
       <table className={ [ 'table table-responsive table-hover', cx('searchTable') ].join(' ') }>
         <thead>
           <tr>
-            <th className={ cx(searchHeaderCSS) }>Name</th>
-            <th className={ cx(searchHeaderCSS) }>Item Code</th>
-            <th className={ cx(searchHeaderCSS) }>Matched Good Code</th>
-            <th className={ cx(searchHeaderCSS) }>Item Description</th>
+            <th className={ [ cx(searchHeaderCSS), cx('name') ].join(' ') }>Name</th>
+            <th className={ [ cx(searchHeaderCSS), cx('itemCode') ].join(' ') }>Item Code</th>
+            <th className={ [ cx(searchHeaderCSS), cx('goodCodes') ].join(' ') }>Matched Good Code</th>
+            <th className={ [ cx(searchHeaderCSS), cx('itemDescription') ].join(' ') }>Item Description</th>
           </tr>
         </thead>
         <tbody>

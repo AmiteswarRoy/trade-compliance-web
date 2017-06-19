@@ -1,5 +1,5 @@
 .searchBoardHeader {
-  font-weight: normal;
+  font-weight: bold;
   font-family: Helvetica;
   font-size: 14px;
   border-top: 2px solid #ddd !important;
@@ -75,10 +75,38 @@
 }
 
 .tableScroll {
-  overflow: scroll;
-  height: 100vh;
+
 }
 
 .searchTable {
   margin-bottom: 200px;
+  width:100%;
+}
+
+.searchTable thead, .searchTable tbody .searchTable tr {
+  display:table;
+  width:100%;
+  table-layout:fixed;
+}
+
+.searchTable tbody {
+  display:block;
+  height:400px;
+  overflow:auto;
+}
+
+.name {
+  width:15%;
+}
+
+.itemCode {
+  width:15%;
+}
+
+.goodCodes {
+  width:15%;
+}
+
+.itemDescription {
+  width:55%;
 }

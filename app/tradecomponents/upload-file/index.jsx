@@ -11,10 +11,10 @@ class UploadFileInput extends Component {
 
   props: {
     className: ?any,
-    inputPlaceHolder: ?String,
-    buttonDisplayText: ?String,
+    inputPlaceHolder: ?string,
+    buttonDisplayText: ?string,
     getFile: ?Function,
-    selectedFileName: ?String
+    selectedFileName: ?string
   };
 
   static defaultProps = {
@@ -23,9 +23,6 @@ class UploadFileInput extends Component {
 
   render() {
     const { inputPlaceHolder, buttonDisplayText, className } = this.props;
-    console.log(inputPlaceHolder);
-    console.log(buttonDisplayText);
-    console.log(buttonDisplayText);
 
     return (
       <div className={ cx(className) }>

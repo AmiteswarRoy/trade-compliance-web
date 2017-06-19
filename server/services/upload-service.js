@@ -32,16 +32,16 @@ uploadService.upload = async (ctx) => {
         ctx.body = { fileName: body.content.filename, dateUploaded: moment(new Date()).format("DD/MMM/YYYY") };
       })
       .catch((err) => {
-        ctx.body = { error: { message: 'Could not upload the file' } };
+        ctx.body = { error: { message: 'Could not upload the file', fileName: body.content.filename, dateUploaded: moment(new Date()).format("DD/MMM/YYYY") } };
       });
     })
     .catch((err) => {
-      ctx.body = { error: { message: 'Could not upload the file' } };
+      ctx.body = { error: { message: 'Could not upload the file', fileName: body.content.filename, dateUploaded: moment(new Date()).format("DD/MMM/YYYY") } };
     });
 
   })
   .catch((err) => {
-    ctx.body = { error: { message: 'Could not upload the file' } };
+    ctx.body = { error: { message: 'Could not upload the file', fileName: body.content.filename, dateUploaded: moment(new Date()).format("DD/MMM/YYYY") } };
   });
 };
 

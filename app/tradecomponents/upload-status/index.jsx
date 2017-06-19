@@ -11,12 +11,18 @@ class UploadStatusBoard extends Component {
 
   props: {
     className: ?any,
-    uploadDetails: ?Object
+    uploadDetails: ?Object,
+    errorDetails: ?Object,
+    isError: ?boolean
   };
 
   _renderTop = () => {
-    const uploadDetails = this.props.uploadDetails;
-    console.log(uploadDetails);
+    let uploadDetails = this.props.uploadDetails;
+    if (this.props.isError) {
+      uploadDetails = {};
+      uploadDetails.fileName = this.props.errorDetails.fileName;
+      uploadDetails.dateUploaded = this.props.errorDetails.dateUploaded;
+    }
     return (
       <table className={ cx('uploadDetailsTable') }>
         <thead>
@@ -27,7 +33,7 @@ class UploadStatusBoard extends Component {
         </thead>
         <tbody>
           <tr>
-            <td> { uploadDetails ? uploadDetails[Object.keys(uploadDetails)[0]] : '' } </td>
+            <td> { uploadDetails ? uploadDetails[Object.keys(uploadDetails)[0]] : '' } <span className={ this.props.isError ? [ 'glyphicon glyphicon-alert', cx('uploadFailedIcon') ].join(' ') : cx('hidden') } /> </td>
             <td> { uploadDetails ? uploadDetails[Object.keys(uploadDetails)[1]] : '' } </td>
           </tr>
         </tbody>
