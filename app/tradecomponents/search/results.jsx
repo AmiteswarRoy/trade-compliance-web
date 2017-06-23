@@ -49,7 +49,7 @@ class ResultsBoard extends Component {
     const searchHeaderCSS = 'searchBoardHeader';
     console.log(resultsData);
     return (
-      <table className={ [ 'table table-responsive table-hover', cx('searchTable') ].join(' ') }>
+      <table className={ [ 'table table-hover', cx('searchTable') ].join(' ') }>
         <thead>
           <tr>
             <th className={ [ cx(searchHeaderCSS), cx('name') ].join(' ') }>Name</th>
@@ -114,7 +114,7 @@ class ResultsBoard extends Component {
             </div>
           </div>
         </nav>
-        <div className={ cx('tableScroll') }>
+        <div className={ [ 'table-responsive', cx('tableScroll') ].join(' ') }>
           { 'message' in searchResult ? (this._renderMessage(searchResult.message)) : (this._renderTop(searchResult.files)) }
         </div>
       </div>

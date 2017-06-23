@@ -94,5 +94,5 @@
   --default-transition-duration: 0.25s;
   --default-transition-easing: ease-in-out;
   --transition-all: all var(--default-transition-duration) var(--default-transition-easing);
-  --max-site-width: 1280px;
+  --max-site-width: 100%;
 }

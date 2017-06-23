@@ -92,7 +92,7 @@
 .searchTable tbody {
   display:block;
   height:400px;
-  overflow:auto;
+  overflow-y:scroll;
 }
 
 .name {

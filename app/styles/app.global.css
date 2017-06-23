@@ -14,13 +14,13 @@ body {
   background-color: var(--white);
   font-size: var(--font-size-base);
   letter-spacing: .5px;
-  min-width: 320px;
+  /*min-width: 320px;*/
   -webkit-font-smoothing: antialiased;
   font-feature-settings: "kern";
   color: var(--charc);
   margin: 0;
   padding: 0 !important;
-  overflow: hidden;
+  /*overflow: hidden;*/
 
   & p {
     margin: 1rem 0;
@@ -28,31 +28,31 @@ body {
 }
 
 /* IE11 soln */
-html, body {
+/*html, body {
   scrollbar-shadow-color: transparent;
   scrollbar-face-color: redrgba(0, 0, 0, 0.5);
   scrollbar-track-color: transparent;
   scrollbar-arrow-color: transparent;
-}
+}*/
 
 /** Source for this can be found at https://gist.github.com/devinrhode2/2573411 */
 /* Turn on custom 8px wide scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
+/*::-webkit-scrollbar {
+  width: 10px;*/
   /* 1px wider than Lion. */
-  height: 10px;
+  /*height: 10px;*/
   /* This is more usable for users trying to click it. */
-  background-color: transparent;
+  /*background-color: transparent;
   -webkit-border-radius: 100px;
-}
+}*/
 
 /* hover effect for both scrollbar area, and scrollbar 'thumb' */
-::-webkit-scrollbar:hover {
+/*::-webkit-scrollbar:hover {
   background-color: rgba(0, 0, 0, 0.09);
-}
+}*/
 
 /* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
-::-webkit-scrollbar-thumb:vertical, ::-webkit-scrollbar-thumb:horizontal {
+/*::-webkit-scrollbar-thumb:vertical, ::-webkit-scrollbar-thumb:horizontal {
   -webkit-border-radius: 100px;
   background-clip: padding-box;
   border: 2px solid transparent;
@@ -64,15 +64,15 @@ html, body {
   @nest :global(.light) & {
 
     background-color: rgba(0, 0, 0, 0.5);
-  }
+  }*/
   /*Prevent it from getting too small */
-}
+/*}*/
 
-::-webkit-scrollbar-thumb:vertical:active, ::-webkit-scrollbar-thumb:horizontal:active {
-  background-color: rgba(0, 0, 0, 0.61);
+/*::-webkit-scrollbar-thumb:vertical:active, ::-webkit-scrollbar-thumb:horizontal:active {
+  background-color: rgba(0, 0, 0, 0.61);*/
   /* Some darker color when you click it */
-  -webkit-border-radius: 100px;
-}
+  /*-webkit-border-radius: 100px;
+}*/
 
 
 /* Page Transitions */
