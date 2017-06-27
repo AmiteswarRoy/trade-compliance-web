@@ -10,8 +10,6 @@ class UploadActions {
     // You need to return a fn in actions
     // to get alt instance as second parameter to access
     // `alt-resolver` and the ApiClient
-    console.log(data.filename);
-    console.log(data.filetype);
     return (dispatch, alt) =>
       // We use `alt-resolver` from the boilerplate
       // to indicate the server we need to resolve
@@ -26,18 +24,17 @@ class UploadActions {
             dataType: 'json',
             contentType: 'multipart/form-data'
           });
-          console.log(response);
-          if (response.error) {
-            this.uploadFail(response.error);
-            callback(response.error);
-          } else {
-            this.uploadSuccess(response);
-            callback(null, response);
+          this.uploadSuccess(response);
+          callback(null, response);
+        } catch (err) {
+          const invalidFile = 'The template could not load the dual goods. Please confirm all the names have required information and try again.';
+          const applicationError = 'Could not upload the file, application is down, please try after sometime';
+          const failureResponse = err.data;
+          if (err.data && err.data.error) {
+            failureResponse.message = err.data.error.type === 'INVALID_REQUEST' ? invalidFile : applicationError;
           }
-        } catch (error) {
-          console.log(error);
-          this.uploadFail({ error });
-          callback(error);
+          this.uploadFail({ failureResponse });
+          callback(failureResponse);
         }
         alt.getActions('requests').stop();
       });

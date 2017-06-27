@@ -19,7 +19,7 @@ uploadService.upload = async (ctx) => {
       method: 'delete',
       timeout: settingsProvider.get('GENERAL.TIME_OUT')
     };
-    await _searchAPIcall(request_delete)
+    await _uploadAPIcall(request_delete)
     .then( async (res) => {
       const request_upload = {
         url: `${baseUrl}/upload`,
@@ -27,21 +27,24 @@ uploadService.upload = async (ctx) => {
         timeout: settingsProvider.get('GENERAL.TIME_OUT'),
         data: fileJson
       };
-      await _searchAPIcall(request_upload)
+      await _uploadAPIcall(request_upload)
       .then((res) => {
         ctx.body = { fileName: body.content.filename, dateUploaded: moment(new Date()).format("DD/MMM/YYYY") };
       })
       .catch((err) => {
-        ctx.body = { error: { message: 'Could not upload the file', fileName: body.content.filename, dateUploaded: moment(new Date()).format("DD/MMM/YYYY") } };
+        ctx.status = 500;
+        ctx.body = { error: { type: 'APPLICATION_ERROR', message: err.message }, fileName: body.content.filename, dateUploaded: moment(new Date()).format("DD/MMM/YYYY") };
       });
     })
     .catch((err) => {
-      ctx.body = { error: { message: 'Could not upload the file', fileName: body.content.filename, dateUploaded: moment(new Date()).format("DD/MMM/YYYY") } };
+      ctx.status = 500;
+      ctx.body = { error: { type: 'APPLICATION_ERROR', message: err.message }, fileName: body.content.filename, dateUploaded: moment(new Date()).format("DD/MMM/YYYY") };
     });
 
   })
   .catch((err) => {
-    ctx.body = { error: { message: 'Could not upload the file', fileName: body.content.filename, dateUploaded: moment(new Date()).format("DD/MMM/YYYY") } };
+    ctx.status = 400;
+    ctx.body = { error: { type: 'INVALID_REQUEST', message: err.message }, fileName: body.content.filename, dateUploaded: moment(new Date()).format("DD/MMM/YYYY") };
   });
 };
 
@@ -97,23 +100,18 @@ let _uploadExcelData = (fileData) => {
     workbook.SheetNames.forEach(function(sheetName){
       const rows = xlsx.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
       jsonObject = _formatExcel(rows);
-      //let jsonString = JSON.stringify(jsonObject, null, 2);
-      //fs.writeFile("excel.txt", jsonString, (err) => {
-        //console.log(jsonObject);
-      //});
     });
     return Promise.resolve(jsonObject);
   }
   catch(error){
-    console.error(error);
-    return Promise.reject({ message:error });
+    return Promise.reject(error);
   }
 }
 
-let _searchAPIcall = (request) => {
+let _uploadAPIcall = (request) => {
   return axios(request)
     .then(res => res.data)
-    .catch(res => Promise.reject({ message: res.data.message }));
+    .catch(error => Promise.reject(error));
 };
 
 export default uploadService;

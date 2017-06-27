@@ -15,13 +15,13 @@ searchService.search = async (ctx) => {
     timeout: settingsProvider.get('GENERAL.TIME_OUT'),
     data:  body
   };
-
   await _fetchData(request)
   .then((res) => {
-    ctx.body  = _splitgoods(res);
+    ctx.body = _splitgoods(res);
   })
   .catch((err) => {
-    ctx.body  = err;
+    ctx.status = 500;
+    ctx.body = { error: { type: 'APPLICATION_ERROR', message: err.message } }
   });
   ctx.body.goods = body.criteria.goods;
 };
@@ -29,7 +29,7 @@ searchService.search = async (ctx) => {
 let _fetchData = (request) => {
   return axios(request)
     .then(res => res.data)
-    .catch(res => Promise.reject({ message: res.data.message }));
+    .catch(error => Promise.reject(error));
 };
 
 let _splitgoods = (data) => {

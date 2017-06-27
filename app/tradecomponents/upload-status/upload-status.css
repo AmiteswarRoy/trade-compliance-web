@@ -31,3 +31,7 @@
 .hidden {
   display: none;
 }
+
+.failureReason {
+  max-width: 300px;
+}

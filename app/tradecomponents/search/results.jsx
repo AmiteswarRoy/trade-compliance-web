@@ -47,7 +47,6 @@ class ResultsBoard extends Component {
 
   _renderTop = (resultsData) => {
     const searchHeaderCSS = 'searchBoardHeader';
-    console.log(resultsData);
     return (
       <table className={ [ 'table table-hover', cx('searchTable') ].join(' ') }>
         <thead>
