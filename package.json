@@ -10,6 +10,7 @@
     "b-staging": "cross-env BABEL_ENV=staging babel-node ./node_modules/.bin/webpack --stats --config ./webpack/env.config.js",
     "clean": "rimraf dist*",
     "dev": "cross-env VIRTUAL_HOST=127.0.0.1 BABEL_ENV=development babel-node ./webpack/dev-server.js",
+    "mvp": "cross-env VIRTUAL_HOST=10.147.135.112 BABEL_ENV=development babel-node ./webpack/mvp-server.js",
     "dev-debug": "cross-env babel-node-debug ./webpack/dev-server.js",
     "test": "npm run lint && cross-env NODE_ENV=test nyc mocha \"test/spec/**/*.test.js\"",
     "test:watch": "cross-env NODE_ENV=test nyc mocha -w \"test/spec/**/*.test.js\"",
