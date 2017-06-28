@@ -23,7 +23,7 @@ searchService.search = async (ctx) => {
     ctx.status = 500;
     ctx.body = { error: { type: 'APPLICATION_ERROR', message: err.message } }
   });
-  ctx.body.goods = body.criteria.goods;
+  ctx.body.goods = body.data[0].attributes.filters.goods;
 };
 
 let _fetchData = (request) => {
@@ -32,14 +32,15 @@ let _fetchData = (request) => {
     .catch(error => Promise.reject(error));
 };
 
-let _splitgoods = (data) => {
-  if(data!=null){
-    data.files.forEach((_section) =>
+let _splitgoods = (searchResults) => {
+  if(searchResults!=null){
+    searchResults.data.forEach((_section) =>
     {
-      _section.goods = union(_section.goods_codes_1?_section.goods_codes_1.split(';'):[],_section.goods_codes_2?_section.goods_codes_2.split(';'):[],_section.goods_codes_3?_section.goods_codes_3.split(';'):[]);
+      const a = union(_section.attributes.codes.goods_codes_1?_section.attributes.codes.goods_codes_1.split(';'):[],_section.attributes.codes.goods_codes_2?_section.attributes.codes.goods_codes_2.split(';'):[],_section.attributes.codes.goods_codes_3?_section.attributes.codes.goods_codes_3.split(';'):[]);
+      _section.attributes.codes.goods = a;
     });
   }
-  return data;
+  return searchResults;
 };
 
 export default searchService;

@@ -6,7 +6,7 @@ class SearchActions {
     );
   }
 
-  search(data, callback) {
+  search(criteria, callback) {
     // You need to return a fn in actions
     // to get alt instance as second parameter to access
     // `alt-resolver` and the ApiClient
@@ -20,7 +20,7 @@ class SearchActions {
           const response = await alt.request({
             url: '/search',
             method: 'POST',
-            data: { criteria: data },
+            data: { data: criteria },
             dataType: 'json'
           });
           this.searchSuccess(response);

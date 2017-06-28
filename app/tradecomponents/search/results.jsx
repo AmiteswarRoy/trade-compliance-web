@@ -23,18 +23,18 @@ class ResultsBoard extends Component {
     const rowColumn = 'searchBoardColumn';
     return (
       <tr className={ cx(rowCss) }>
-        <td className={ [ cx(rowColumn), cx('name') ].join(' ') }>{ results.match_phrase }</td>
-        <td className={ [ cx(rowColumn), cx('itemCode') ].join(' ') }>{ results.item_code }</td>
+        <td className={ [ cx(rowColumn), cx('name') ].join(' ') }>{ results.attributes.match_phrase }</td>
+        <td className={ [ cx(rowColumn), cx('itemCode') ].join(' ') }>{ results.attributes.item_code }</td>
         <td className={ [ cx(rowColumn), cx('goodCodes') ].join(' ') }>
           <ul className={ cx('goodsRow') }>
-            { results.goods.map(e =>
+            { results.attributes.codes.goods.map(e =>
               <li>
                 { e }
               </li>
             ) }
           </ul>
         </td>
-        <td className={ cx('itemDescription') }>{ results.item_description }</td>
+        <td className={ cx('itemDescription') }>{ results.attributes.item_description }</td>
       </tr>
     );
   }
@@ -114,7 +114,7 @@ class ResultsBoard extends Component {
           </div>
         </nav>
         <div className={ [ 'table-responsive', cx('tableScroll') ].join(' ') }>
-          { 'message' in searchResult ? (this._renderMessage(searchResult.message)) : (this._renderTop(searchResult.files)) }
+          { 'message' in searchResult ? (this._renderMessage(searchResult.message)) : (this._renderTop(searchResult.data)) }
         </div>
       </div>
     );

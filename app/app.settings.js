@@ -67,7 +67,7 @@ const settings = {
       }
     },
     TRADES_COMPLIANCE: {
-      API_URL: 'http://localhost:9900/tradecompliance/v1'
+      API_URL: 'http://localhost:9900/tradecompliance'
     }
   },
 

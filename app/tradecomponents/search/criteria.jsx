@@ -78,9 +78,14 @@ class SearchCriteria extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { flux } = this.context;
-    const data = {
-      goods: map(this.state.goods, 'value')
-    };
+    const data = [ {
+      type: 'Goods',
+      attributes: {
+        filters: {
+          goods: map(this.state.goods, 'value')
+        }
+      }
+    } ];
 
     flux.getActions('search').search(data, (error, response) => {
       this.setState({

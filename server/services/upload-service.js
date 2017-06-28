@@ -99,7 +99,7 @@ let _uploadExcelData = (fileData) => {
     let jsonObject = {};
     workbook.SheetNames.forEach(function(sheetName){
       const rows = xlsx.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
-      jsonObject = _formatExcel(rows);
+      jsonObject = { data: _formatExcel(rows) };
     });
     return Promise.resolve(jsonObject);
   }
