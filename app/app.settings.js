@@ -14,8 +14,8 @@ const settings = {
 
     HELMET: {
       AUTHOR: 'Dow Jones PIB Development',
-      TITLE_BASE: 'Universal ReactJS ES7 Boilerplate',
-      DESCRIPTION: 'Universal ReactJS ES7 Boilerplate, source code on github.dowjones.com'
+      TITLE_BASE: 'RISK CENTER | TRADE COMPILANCE',
+      DESCRIPTION: 'RISK CENTER | TRADE COMPILANCE'
     },
 
     i13N: {
