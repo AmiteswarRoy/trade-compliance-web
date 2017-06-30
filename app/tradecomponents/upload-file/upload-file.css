@@ -43,7 +43,7 @@
 
 .inputTextBox { 
   border: 1px solid #c4c4c4;
-  width: 275px;
+  /*width: 275px;*/
   font-size: 15px;
   padding: 4px 4px 4px 10px;
   border-radius: 4px;
@@ -65,4 +65,8 @@
 
 .inlineContainer {
     display: inline-block;
+}
+
+.zeroLeftMargin {
+	margin-left: 0px !important;
 }

@@ -76,8 +76,8 @@ class App extends Component {
     const initialBreakpoint = get(identity, 'initialBreakpoint');
     const props = { location, entitlements };
     const params = { key: location.pathname, ...props };
-    const { bodyHeight } = this.state;
-    const bodyStyle = bodyHeight ? { height: bodyHeight } : null;
+    // const { bodyHeight } = this.state;
+    // const bodyStyle = bodyHeight ? { height: bodyHeight } : null;
     const clonedChildren = () => (
       React.Children.map(children, child => React.cloneElement(child, params))
     );
@@ -99,8 +99,7 @@ class App extends Component {
           transitionLeaveTimeout={ 600 }>
           <div
             id='app-body'
-            className={ cx('body', `breakpoint-${initialBreakpoint || 16}`) }
-            style={ bodyStyle }>
+            className={ cx('body', `breakpoint-${initialBreakpoint || 16}`) }>
             { clonedChildren() }
           </div>
         </ReactCSSTransitionGroup>

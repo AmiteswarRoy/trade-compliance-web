@@ -1,7 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { bindAll } from 'lodash';
-import UploadFileInput from 'tradecomponents/upload-file/';
+// import UploadFileInput from 'tradecomponents/upload-file/';
 import UploadStatusBoard from 'tradecomponents/upload-status/';
+
+import classNames from 'classnames/bind';
+
+import styles from 'tradecomponents/upload-file/upload-file.css';
+
+const cx = classNames.bind(styles);
 
 class UploadPage extends Component {
   constructor() {
@@ -90,12 +96,20 @@ class UploadPage extends Component {
         </div>
         <div className='uploadContainer'>
           <h4>Upload File</h4>
-          <form className='uploader' encType='multipart/form-data' >
-            <UploadFileInput className='inlineContainer' inputPlaceHolder='No file chosen' buttonDisplayText='Browse' getFile={ this.handleFile.bind(this) } selectedFileName={ this.state.filename ? this.state.filename : '' } />
-            <div className='inlineContainer'>
-              <button type='button' disabled={ !this.state.isFileSelected } className='btn btn-primary' onClick={ this.handleSubmit } >
-                { uploadText }
-              </button>
+          <form className='uploader form-horizontal' encType='multipart/form-data' >
+            <div className=className={ [ 'form-group', cx('zeroLeftMargin') ].join(' ') }>
+              <input type='file' name='file' id='file' className={ cx('inputFile') } onChange={ this.handleFile.bind(this) } />
+              <div className={ [ 'col-sm-10 col-md-6 col-lg-6', cx('inputFileButtonLabel') ].join(' ') } >
+                <input type='text' name='file-text' id='file-text' className={ [ 'col-sm-12 col-md-12 col-lg-12', cx('inputTextBox') ].join(' ') } placeholder='No file chosen' value={ this.state.filename ? this.state.filename : '' } />
+              </div>
+              <label htmlFor='file' className={ [ 'col-sm-6 col-md-1 col-lg-1', cx('inputFileButton') ].join(' ') } >
+                Browse
+              </label>
+              <div className='inlineContainer col-sm-6 col-md-3  col-lg-3'>
+                <button type='button' disabled={ !this.state.isFileSelected } className='btn btn-primary' onClick={ this.handleSubmit } >
+                  { uploadText }
+                </button>
+              </div>
             </div>
             <div className='validationError'>
               <span className={ this.state.isValidationError ? 'show' : 'hidden' }>
