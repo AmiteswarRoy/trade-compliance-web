@@ -97,7 +97,7 @@ class UploadPage extends Component {
         <div className='uploadContainer'>
           <h4>Upload File</h4>
           <form className='uploader form-horizontal' encType='multipart/form-data' >
-            <div className=className={ [ 'form-group', cx('zeroLeftMargin') ].join(' ') }>
+            <div className={ [ 'form-group', cx('zeroLeftMargin') ].join(' ') }>
               <input type='file' name='file' id='file' className={ cx('inputFile') } onChange={ this.handleFile.bind(this) } />
               <div className={ [ 'col-sm-10 col-md-6 col-lg-6', cx('inputFileButtonLabel') ].join(' ') } >
                 <input type='text' name='file-text' id='file-text' className={ [ 'col-sm-12 col-md-12 col-lg-12', cx('inputTextBox') ].join(' ') } placeholder='No file chosen' value={ this.state.filename ? this.state.filename : '' } />

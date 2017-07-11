@@ -91,6 +91,7 @@ export default async function (ctx) {
       const host = NODE_ENV === 'development' ?
                      `${serverInfo.HOST}:${port}` :
                      `${ctx.request.host}`;
+      //const host = `${serverInfo.HOST}:${port}`;
       const redirectUrl = `${protocol}://${host}`;
       debug('dev')(`redirectUrl: ${redirectUrl}`);
       ctx.redirect(`${redirectUrl}/showcase`)

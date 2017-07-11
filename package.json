@@ -25,7 +25,9 @@
     "outdated-deps": "npm outdated --registry=https://artifactory.dowjones.io/artifactory/api/npm/npm-virtual/",
     "production": "npm run b-production && cross-env UV_THREADPOOL_SIZE=100 NODE_ENV=production SSL=off DEBUG=dev,koa node ./server/index.js",
     "staging": "npm run b-staging && cross-env UV_THREADPOOL_SIZE=100 NODE_ENV=staging SSL=off DEBUG=dev,koa node ./server/index.js",
-    "integration": "npm run b-integration && cross-env UV_THREADPOOL_SIZE=100 NODE_ENV=integration SSL=off DEBUG=dev,koa node ./server/index.js"
+    "integration": "npm run b-integration && cross-env UV_THREADPOOL_SIZE=100 NODE_ENV=integration SSL=off DEBUG=dev,koa node ./server/index.js",
+    "build-win": "npm run clean && npm run b-production-win",
+    "b-production-win": "cross-env VIRTUAL_HOST=10.1.106.70 PORT=2999 BABEL_ENV=production babel-node -- ./node_modules/webpack/bin/webpack.js --stats --config ./webpack/prod.config.js"
   },
   "repository": {
     "type": "git",

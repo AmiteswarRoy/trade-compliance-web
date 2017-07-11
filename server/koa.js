@@ -63,7 +63,7 @@ default: // staging & production
   // must be set programmaticaly for windows
   debug.enable('koa');
 
-  loadProductionMiddleware();
+  //loadProductionMiddleware();
   break;
 }
 
@@ -85,6 +85,10 @@ case 'development': {
   break;
 }
 default:
+  console.log('1111111111',__dirname);
+  console.log('2222222222',env);
+  console.log('3333333333',cacheOpts);
+  console.log('4444444444',path.join(__dirname, `../dist_${env}`));
   app.use(
     convert(
       mount('/assets', staticCache(path.join(__dirname, `../dist_${env}`), cacheOpts))
